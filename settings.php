@@ -346,37 +346,34 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
 
-    // Marketing Spot 2 Right Title 1
-    $name = 'theme_enlightlite/mspot2RightTitle1';
-    $title = get_string('rightTitle1', 'theme_enlightlite');
-    $description = get_string('mspotrighttitledesc1', 'theme_enlightlite', array('msno' => '2'));
-    $default = 'lang:title1';
-    $setting = new admin_setting_configtext($name, $title, $description, $default);
-    $temp->add($setting);
+    for ($i = 1; $i <= 4; $i++) {
+        // Marketing Spot 2 Right Title 1
+        $name = 'theme_enlightlite/mspot2titler' . $i;
+        $title = get_string('titler' . $i, 'theme_enlightlite');
+        $description = get_string('mspottitledescr' . $i, 'theme_enlightlite');
+        $default = 'lang:learnanytime';
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $temp->add($setting);
 
-    // Marketing Spot 2 Right Title 2
-    $name = 'theme_enlightlite/mspot2RightTitle2';
-    $title = get_string('rightTitle2', 'theme_enlightlite');
-    $description = get_string('mspotrighttitledesc2', 'theme_enlightlite', array('msno' => '2'));
-    $default = 'lang:title2';
-    $setting = new admin_setting_configtext($name, $title, $description, $default);
-    $temp->add($setting);
+        // Marketing Spot 2 Right Image 1
+        $name = 'theme_enlightlite/rightimage' . $i;
+        $title = get_string('rightimage' . $i, 'theme_enlightlite', array('rightimage' => $i));
+        $description = get_string('rightimagedes' . $i, 'theme_enlightlite');
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'rightimage' . $i);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
 
-    // Marketing Spot 2 Right Title 3
-    $name = 'theme_enlightlite/mspot2RightTitle3';
-    $title = get_string('rightTitle3', 'theme_enlightlite');
-    $description = get_string('mspotrighttitledesc3', 'theme_enlightlite', array('msno' => '2'));
-    $default = 'lang:title3';
-    $setting = new admin_setting_configtext($name, $title, $description, $default);
-    $temp->add($setting);
+        //Marketing Spot 2 Right Desc 1
+        $name = 'theme_enlightlite/mspot2descr' . $i;
+        $title = get_string('description' . $i);
+        $description = get_string('mspotdescdescr' . $i, 'theme_enlightlite');
+        $default = 'lang:learnanytimedesc';
+        $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+    }
 
-    // Marketing Spot 2 Right Title 4
-    $name = 'theme_enlightlite/mspot2RightTitle4';
-    $title = get_string('rightTitle4', 'theme_enlightlite');
-    $description = get_string('mspotrighttitledesc4', 'theme_enlightlite', array('msno' => '2'));
-    $default = 'lang:title4';
-    $setting = new admin_setting_configtext($name, $title, $description, $default);
-    $temp->add($setting);
+
+
     // Marketing Spot 2 Title.
     $name = 'theme_enlightlite/mspot2title';
     $title = get_string('title', 'theme_enlightlite');

@@ -38,6 +38,7 @@ echo $OUTPUT->doctype() ?>
 <head>
     <title><?php echo $OUTPUT->page_title(); ?></title>
     <link rel="shortcut icon" href="<?php echo $OUTPUT->favicon(); ?>" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
     <?php echo $OUTPUT->standard_head_html() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -91,11 +92,34 @@ echo $OUTPUT->doctype() ?>
         $msp2urltxt = theme_enlightlite_get_setting('mspot2urltext', 'format_html');
         $msp2urltxt = theme_enlightlite_lang($msp2urltxt);
         $mspot2urltarget = theme_enlightlite_get_setting('mspot2urltarget');
+
+        $mspot2titler1 = theme_enlightlite_get_setting('mspot2titler1', 'format_html');
+        $mspot2titler1 = theme_enlightlite_lang($mspot2titler1);
+        $mspot2titler2 = theme_enlightlite_get_setting('mspot2titler2', 'format_html');
+        $mspot2titler2 = theme_enlightlite_lang($mspot2titler2);
+        $mspot2titler3 = theme_enlightlite_get_setting('mspot2titler3', 'format_html');
+        $mspot2titler3 = theme_enlightlite_lang($mspot2titler3);
+        $mspot2titler4 = theme_enlightlite_get_setting('mspot2titler4', 'format_html');
+        $mspot2titler5 = theme_enlightlite_lang($mspot2titler4);
+
+        $msp2descr1 = theme_enlightlite_get_setting('mspot2descr1', 'format_html');
+        $msp2descr1 = theme_enlightlite_lang($msp2descr1);
+        $msp2descr2 = theme_enlightlite_get_setting('mspot2descr2', 'format_html');
+        $msp2descr2 = theme_enlightlite_lang($msp2descr2);
+        $msp2descr3 = theme_enlightlite_get_setting('mspot2descr3', 'format_html');
+        $msp2descr3 = theme_enlightlite_lang($msp2descr3);
+        $msp2descr4 = theme_enlightlite_get_setting('mspot2descr3', 'format_html');
+        $msp2descr4 = theme_enlightlite_lang($msp2descr4);
+
+        $rightimage1 = theme_enlightlite_render_slideimg('rightimage1', 'rightimage1');
+        $rightimage2 = theme_enlightlite_render_slideimg('rightimage2', 'rightimage2');
+        $rightimage3 = theme_enlightlite_render_slideimg('rightimage3', 'rightimage3');
+        $rightimage4 = theme_enlightlite_render_slideimg('rightimage4', 'rightimage4');
         $target = ($mspot2urltarget == '1') ? "_blank" : "_self";
         if ($mspot2status == '1') {
             ?>
             <div class="jumbo-viewall">
-                <div class="container">
+                <div class="container about-us">
                     <div class="inner-wrap">
                         <div class="desc-wrap">
                             <h2><?php echo $msp2title; ?></h2>
@@ -105,24 +129,28 @@ echo $OUTPUT->doctype() ?>
                     </div>
                     <div class="inner-wrap-right">
                         <div class="item">
-                            <img src="" alt="">
-                            <h3></h3>
-                            <p></p>
+                            <img src="<?php echo $rightimage1 ?>" alt="">
+                            <h3><?php echo $mspot2titler1; ?></h3>
+                            <p><?php echo $msp2descr1; ?></p>
+
                         </div>
                         <div class="item">
-                            <img src="" alt="">
-                            <h3></h3>
-                            <p></p>
+                            <img src="<?php echo $rightimage2 ?>" alt="">
+                            <h3><?php echo $mspot2titler2; ?></h3>
+                            <p><?php echo $msp2descr2; ?></p>
+
                         </div>
                         <div class="item">
-                            <img src="" alt="">
-                            <h3></h3>
-                            <p></p>
+                            <img src="<?php echo $rightimage3 ?>" alt="">
+                            <h3><?php echo $mspot2titler3; ?></h3>
+                            <p><?php echo $msp2descr3; ?></p>
+
                         </div>
                         <div class="item">
-                            <img src="" alt="">
-                            <h3></h3>
-                            <p></p>
+                            <img src="<?php echo $rightimage4 ?>" alt="">
+                            <h3><?php echo $mspot2titler4; ?></h3>
+                            <p><?php echo $msp2descr4; ?></p>
+
                         </div>
                     </div>
                 </div>
