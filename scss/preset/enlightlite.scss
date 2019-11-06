@@ -2260,9 +2260,9 @@ input[type="reset"][disabled] {
             }
         }
         .jumbo-viewall .inner-wrap {
-            padding: 0 0 0 360px !important;
+            //padding: 0 0 0 360px !important;
             .desc-wrap {
-                padding: 0 0 0 120px !important;
+                //padding: 0 0 0 120px !important;
             }
             .btn-jumbo {
                 right: auto !important;
@@ -2296,9 +2296,9 @@ input[type="reset"][disabled] {
         left: -2px !important;
     }
     .jumbo-viewall .inner-wrap {
-        padding: 0 360px 0 0 !important;
+        //padding: 0 360px 0 0 !important;
         .desc-wrap {
-            padding: 0 120px 0 0 !important;
+            //padding: 0 120px 0 0 !important;
         }
         .btn-jumbo {
             right: 78px !important;
@@ -2947,11 +2947,11 @@ input[type="reset"][disabled] {
             float: right;
         }
         .jumbo-viewall .inner-wrap {
-            padding: 0 0 0 270px !important;
+           // padding: 0 0 0 270px !important;
             .desc-wrap {
-                background-image: $url_32 !important;
+                //background-image: $url_32 !important;
                 background-position: left center !important;
-                padding: 0 0 0 95px !important;
+               // padding: 0 0 0 95px !important;
             }
             .btn-jumbo {
                 right: auto !important;
@@ -2998,10 +2998,10 @@ input[type="reset"][disabled] {
         }
     }
     .jumbo-viewall .inner-wrap {
-        padding: 0 270px 0 0 !important;
+        //padding: 0 270px 0 0 !important;
         position: relative !important;
         .desc-wrap {
-            background-image: $url_31 !important;
+           // background-image: $url_31 !important;
             background-repeat: no-repeat !important;
             background-position: right center !important;
             padding: 0 95px 0 0 !important;
@@ -3009,10 +3009,10 @@ input[type="reset"][disabled] {
         .btn-jumbo {
             width: 100% !important;
             max-width: 254px !important;
-            position: absolute !important;
-            top: 50% !important;
-            right: 0 !important;
-            margin-top: -28px !important;
+            //position: absolute !important;
+            //top: 50% !important;
+           // right: 0 !important;
+            //margin-top: -28px !important;
         }
     }
     .blog_entry .content > {
