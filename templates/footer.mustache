@@ -21,9 +21,14 @@
      * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
      */
 }}
+
 <footer id="site-footer">
     {{# footermain }}
+    {{#courses}}
+        <a href="{{url}}/course/view.php?id={{id}}">{{fullname}}</a>
+    {{/courses}}
     <div class="footer-main">
+       
         <div class="bgtrans-overlay"></div><!--Overlay transparent bg layer-->
         <div class="container footer-main-wrap">
             <div class="row {{{footerb1 }}}">
@@ -37,7 +42,6 @@
                     </div>
                 </div>
                 {{/ footerb1}}
-
                 {{# footerb2}}
                 <div class="{{ colClass }}">
                     <h6> {{{ fb2title }}} </h6>
@@ -84,14 +88,13 @@
       </div>
     </div>
     {{/ copyright}}
-
+{{{ output.standard_footer_html }}}
 </footer>
 <!--E.O.Footer-->
- {{{ output.standard_footer_html }}}
- {{{ output.standard_end_of_body_html }}}
+ 
 
 
-
+{{{ output.standard_end_of_body_html }}}
 {{#js}}
 require(['theme_boost/loader']);
 require(['theme_boost/drawer'], function(mod) {

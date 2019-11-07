@@ -202,6 +202,14 @@ if ($ADMIN->fulltree) {
         $setting->set_updatedcallback('theme_reset_all_caches');
         $temp->add($setting);
 
+        // Slide Top Caption.
+        $name = 'theme_enlightlite/slidetop' . $i . 'caption';
+        $title = get_string('slidetopcaption', 'theme_enlightlite', array('slide' => $i));
+        $description = get_string('slidetopcaptiondesc', 'theme_enlightlite');
+        $default = 'lang:slidetopcaptiondefault';
+        $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+
         // Slide Caption.
         $name = 'theme_enlightlite/slide' . $i . 'caption';
         $title = get_string('slidecaption', 'theme_enlightlite', array('slide' => $i));
@@ -236,6 +244,32 @@ if ($ADMIN->fulltree) {
 
         $name = 'theme_enlightlite/slide' . $i . 'urltarget1';
         $title = get_string('urltarget1', 'theme_enlightlite', array('type' => "1"));
+        $description = get_string('urltarget_desc', 'theme_enlightlite', array('slide' => $i));
+        $same = get_string('sameWindow', 'theme_enlightlite');
+        $new = get_string('newWindow', 'theme_enlightlite');
+        $default = 1;
+        $choices = array(0 => $same, 1 => $new);
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+
+        // Slide Link 2 text.
+        $name = 'theme_enlightlite/slide' . $i . 'urltext2';
+        $title = get_string('slideurl2text', 'theme_enlightlite', array('type' => "1"));
+        $description = get_string('slideurl1textdesc', 'theme_enlightlite');
+        $default = 'lang:knowmore';
+        $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+
+        // Slide 2 Url.
+        $name = 'theme_enlightlite/slide' . $i . 'url2';
+        $title = get_string('slideurl2', 'theme_enlightlite', array('type' => "1"));
+        $description = get_string('slideurl1desc', 'theme_enlightlite');
+        $default = 'http://www.example.com/';
+        $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_URL);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/slide' . $i . 'urltarget2';
+        $title = get_string('urltarget2', 'theme_enlightlite', array('type' => "1"));
         $description = get_string('urltarget_desc', 'theme_enlightlite', array('slide' => $i));
         $same = get_string('sameWindow', 'theme_enlightlite');
         $new = get_string('newWindow', 'theme_enlightlite');

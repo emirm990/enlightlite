@@ -29,6 +29,20 @@ defined('MOODLE_INTERNAL') || die();
  * @param type|string $theme
  * @return type|string
  */
+//require(__DIR__ . '/../../../config.php');
+
+function theme_enlightlite_get_courses()
+{
+    $sql = "SELECT * FROM mdl_course WHERE id <> 1 ORDER BY timecreated DESC LIMIT 4";
+    global $DB;
+    $course = $DB->get_records_sql($sql);
+    return $course;
+}
+function theme_enlightlite_get_url()
+{
+    global $CFG;
+    return $CFG->wwwroot;
+}
 function theme_enlightlite_get_main_scss_content($theme)
 {
     global $CFG;

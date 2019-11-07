@@ -292,6 +292,9 @@ abbr[title] {
 abbr[data-original-title] {
     border-bottom: 0;
 }
+.tool_dataprivacy{
+    text-align: center;
+}
 input {
     outline: 0 none;
     font-family: $font_0, $font_5, $font_6, $font_7;
@@ -3220,6 +3223,15 @@ input[type="reset"][disabled] {
 $overlayCheck: $white;
 #site-footer {
     position: relative;
+    @if $footbgimgStatus == true {
+        background-image: $footbgimg;
+    }
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     .footer-links {
         .infoarea {
             p a {
@@ -3234,16 +3246,8 @@ $overlayCheck: $white;
         }
     }
     .footer-main {
-        @if $footbgimgStatus == true {
-            background-image: $footbgimg;
-        }
-        background-repeat: no-repeat;
-        background-position: bottom center;
+        
         padding: 50px 0;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
         position: relative;
         .bgtrans-overlay {
             background: transparent;
@@ -3336,6 +3340,7 @@ $overlayCheck: $white;
         }
     }
     .footer-bottom {
+        border-top: 1px solid gray;
         background: transparent;
         padding: 18px 0;
         p {
@@ -5443,23 +5448,30 @@ select[multiple] {
             margin: 0 !important;
         }
         .camera_prev {
-            width: 35px;
+            width: 60px;
             height: 60px;
             line-height: 50px;
-            text-align: right;
-            background: rgba(57, 179, 230, 0.7);
-            border-radius: 30px;
+            text-align: center;
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 10px;
             > span {
-                width: auto;
+                width: 40px;
                 height: auto;
                 background: none;
+                white-space: normal;
+                margin: 0 auto;
                 &:before {
                     font-family: $font_9;
                     color: $white;
                     vertical-align: middle;
                     font-size: 24px;
-                    content: '\f104';
-                    margin-right: 18px;
+                    content: 'PREV';
+                    width: 40px;
+                    white-space: normal;
+                    display: inline-block;
+                    word-break: break-all;
+                    line-height: 24px;              
                 }
             }
             &:hover {
@@ -5467,23 +5479,30 @@ select[multiple] {
             }
         }
         .camera_next {
-            width: 35px;
+            width: 60px;
             height: 60px;
             line-height: 50px;
-            text-align: right;
-            background: rgba(57, 179, 230, 0.7);
-            border-radius: 30px;
+            text-align: center;
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 10px;
             > span {
                 width: auto;
                 height: auto;
                 background: none;
+                white-space: normal;
+                margin: 0 auto;
                 &:before {
                     font-family: $font_9;
                     color: $white;
                     vertical-align: middle;
                     font-size: 24px;
-                    content: '\f105';
-                    margin-right: 8px;
+                    content: 'NEXT';
+                    width: 40px;
+                    white-space: normal;
+                    display: inline-block;
+                    word-break: break-all;
+                    line-height: 24px; 
                 }
             }
             &:hover {
@@ -5514,6 +5533,7 @@ select[multiple] {
             transition-duration: 0.5s;
             transition-property: color;
             margin-bottom: 10px;
+            border-radius: 5px;
             &:before {
                 content: "";
                 background: rgba(0, 0, 0, .5);
@@ -5528,6 +5548,7 @@ select[multiple] {
                 transition-property: transform;
                 transition-timing-function: ease-out;
                 z-index: -1;
+                border-radius: 5px;
             }
             &:hover {
                 color: $white;
@@ -5541,6 +5562,7 @@ select[multiple] {
             color: $color_tuatara_approx;
             background: $white;
             border: 0;
+            
             &:hover {
                 color: $white;
                 &:before {
@@ -5702,7 +5724,7 @@ select[multiple] {
 }
 
 .content_overlayer {
-    background: $black_40;
+    //background: $black_40;
 }
 
 

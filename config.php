@@ -48,7 +48,7 @@ $THEME->extrascsscallback = 'theme_enlightlite_get_extra_scss';
 
 $THEME->csstreepostprocessor = 'theme_enlightlite_css_tree_post_processor';
 
-$THEME->scss = function($theme) {
+$THEME->scss = function ($theme) {
 
     return theme_enlightlite_get_main_scss_content($theme);
 };
@@ -168,6 +168,3 @@ $THEME->layouts = [
         'defaultregion' => 'side-pre'
     )
 ];
-
-
-

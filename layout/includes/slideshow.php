@@ -28,11 +28,11 @@ $themeurl = theme_enlightlite_theme_url();
 
 ?>
 
- <link href="<?php echo $themeurl; ?>/style/animate.css" rel="stylesheet" media="all">
+<link href="<?php echo $themeurl; ?>/style/animate.css" rel="stylesheet" media="all">
 <script type='text/javascript' src="<?php echo $themeurl; ?>/javascript/jquery.mobile.customized.min.js"></script>
- <script type="text/javascript" src="<?php echo $themeurl; ?>/javascript/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="<?php echo $themeurl; ?>/javascript/jquery.easing.1.3.js"></script>
 <script type='text/javascript' src='<?php echo $themeurl; ?>/javascript/camera.min.js'></script>
- <link rel='stylesheet' id='camera-css'  href='<?php echo $themeurl; ?>/style/camera.css' type='text/css' media='all'>
+<link rel='stylesheet' id='camera-css' href='<?php echo $themeurl; ?>/style/camera.css' type='text/css' media='all'>
 
 <?php
 $slidecontent = "";
@@ -42,7 +42,8 @@ $slidecontent = "";
  * Return's the general configuration values of slideshow.
  * @return type|array
  */
-function slideshow_general_config() {
+function slideshow_general_config()
+{
 
     $general = array();
     $general['slideshowStatus'] = theme_enlightlite_get_setting('slideshowStatus');
@@ -63,15 +64,16 @@ function slideshow_general_config() {
  * @param type|array $general
  * @return type|string
  */
-function slideshow_header($general) {
+function slideshow_header($general)
+{
 
     $header = "";
-    $header .= html_writer::start_tag('div', array('class' => 'homepage-carousel') );
+    $header .= html_writer::start_tag('div', array('class' => 'homepage-carousel'));
     $header .= html_writer::start_tag('div', array(
         'id' => 'homepage-carousel',
         'class' => ' camera_magenta_skin bs-slider ',
         'data-interval' => $general['slideinterval']
-        ));
+    ));
     return $header;
 }
 
@@ -80,7 +82,8 @@ function slideshow_header($general) {
  * @param type|array $general
  * @return type|string
  */
-function slideshow_footer($general) {
+function slideshow_footer($general)
+{
     $footer = "";
     $footer .= html_writer::end_tag('div');  // Div #homepage-Carousel.
     $footer .= html_writer::end_tag('div');  // Div .homepage-Carousel.
@@ -92,7 +95,8 @@ function slideshow_footer($general) {
  * @param type|array $general
  * @return type|string
  */
-function slideshow_body($general) {
+function slideshow_body($general)
+{
     $data = array();
     $sliderlevel = 0;
     $data['maincontent'] = "";
@@ -117,45 +121,56 @@ function slideshow_body($general) {
  * @param type|string $s1
  * @return type|array
  */
-function slideshow_slide_settings($general = array(), $s1 = "") {
+function slideshow_slide_settings($general = array(), $s1 = "")
+{
     if (!empty($s1) && !empty($general)) {
         $slide['slideStatus'] = theme_enlightlite_get_setting('slide' . $s1 . 'status');
         $slide['slideurl1'] = theme_enlightlite_get_setting('slide' . $s1 . 'url1');
+        $slide['slideurl2'] = theme_enlightlite_get_setting('slide' . $s1 . 'url2');
         $slide['slideimg'] = theme_enlightlite_render_slideimg($s1, 'slide' . $s1 . 'image');
-        $slide['contentPosition'] = theme_enlightlite_get_setting('slide'. $s1 .'contentPosition');
-        $urltarget1 = theme_enlightlite_get_setting('slide'. $s1 .'urltarget1');
-        $contwidth = theme_enlightlite_get_setting('slide'.$s1.'contFullwidth');
+        $slide['contentPosition'] = theme_enlightlite_get_setting('slide' . $s1 . 'contentPosition');
+        $urltarget1 = theme_enlightlite_get_setting('slide' . $s1 . 'urltarget1');
+        $urltarget2 = theme_enlightlite_get_setting('slide' . $s1 . 'urltarget2');
+        $contwidth = theme_enlightlite_get_setting('slide' . $s1 . 'contFullwidth');
 
         $slidedesc = theme_enlightlite_get_setting('slide' . $s1 . 'desc', 'format_html');
         $slideurltext1 = theme_enlightlite_get_setting('slide' . $s1 . 'urltext1');
+        $slideurltext2 = theme_enlightlite_get_setting('slide' . $s1 . 'urltext2');
+        $slidetopcaption = theme_enlightlite_get_setting('slidetop' . $s1 . 'caption', true);
         $slidecaption = theme_enlightlite_get_setting('slide' . $s1 . 'caption', true);
+        $slide['slidetopcaption'] = theme_enlightlite_lang($slidetopcaption);
         $slide['slidecaption'] = theme_enlightlite_lang($slidecaption);
         $slide['slideurltext1'] = theme_enlightlite_lang($slideurltext1);
+        $slide['slideurltext2'] = theme_enlightlite_lang($slideurltext2);
         $slide['slidedesc'] = theme_enlightlite_lang($slidedesc);
         $s2 = (int) $s1 - 1;
         if ($contwidth == "auto") {
             $contwidth = "auto";
         } else {
             $contwidth = intval($contwidth);
-            if ($contwidth > '100' ) {
+            if ($contwidth > '100') {
                 $contwidth = '100%';
             } else if ($contwidth <= 0) {
                 $contwidth = "auto";
             } else {
-                $contwidth = $contwidth.'%';
+                $contwidth = $contwidth . '%';
             }
         }
         $slide['cont_width'] = $contwidth;
         $slide['contentAnimation'] = "ScrollRight";
-        $slide['contentAclass'] = "animated ". $slide['contentAnimation'];
+        $slide['contentAclass'] = "animated " . $slide['contentAnimation'];
         if ($urltarget1 == 1) {
             $slide['btntarget1'] = "_blank";
         } else {
             $slide['btntarget1'] = "_self";
         }
-
+        if ($urltarget2 == 1) {
+            $slide['btntarget2'] = "_blank";
+        } else {
+            $slide['btntarget2'] = "_self";
+        }
         if (!empty($slide['contentPosition'])) {
-            $slide['contentClass'] = 'content-'.$slide['contentPosition'];
+            $slide['contentClass'] = 'content-' . $slide['contentPosition'];
         } else {
             $slide['contentClass'] = "content-centerRight";
         }
@@ -176,17 +191,18 @@ function slideshow_slide_settings($general = array(), $s1 = "") {
  * @param type|array $general
  * @return type|string
  */
-function slideshow_maincontent($slide, $general) {
+function slideshow_maincontent($slide, $general)
+{
     $slidecontent = '';
     $slideheadclass = array(
         'class' => 'carousel-item',
         'data-thumb' => $slide['slideimg'],
         'data-src' => $slide['slideimg'],
         'data-link' => $slide['dataUrl']
-        );
+    );
     $slidecontent .= html_writer::start_tag('div', $slideheadclass);
 
-    if ( !empty($slide['slidecaption']) || !empty($slide['slidedesc']) || !empty($slide['slideurltext1'])   ) {
+    if (!empty($slide['slidecaption']) || !empty($slide['slidedesc']) || !empty($slide['slideurltext1'])) {
         $slidecontent .= slideshow_textcontent($slide, $general);
     }
     $slidecontent .= html_writer::end_tag('div');  // Div Carousel-item, End Of Wraper.
@@ -199,26 +215,35 @@ function slideshow_maincontent($slide, $general) {
  * @param type|array $general
  * @return type|string
  */
-function slideshow_textcontent($slide, $general) {
+function slideshow_textcontent($slide, $general)
+{
 
     $slidecontent = $title2 = '';
 
     $contentstyleclass = "content_overlayer";
     $textcontentclass = "slide-text animated fadeIn ";
-    $textcontentclass .= $slide['contentClass'] ." ";
+    $textcontentclass .= $slide['contentClass'] . " ";
     $textcontentclass .= $contentstyleclass;
     $slidecontent .= html_writer::start_tag('div', array(
         'class' => $textcontentclass,
-        'style' => 'width:'.$slide['cont_width'].';'
-        ));
+        'style' => 'width:' . $slide['cont_width'] . ';'
+    ));
     $slidecaptionarray = array('class' => "", 'data-animation' => $slide['contentAclass']);
+    if (!empty($slide['slidetopcaption'])) {
+        $slidecontent .= html_writer::tag('h2', $slide['slidetopcaption'], array('class' => "top-caption", 'data-animation' => $slide['contentAclass']), $slidecaptionarray);
+    }
     $slidecontent .= html_writer::tag('h1', $slide['slidecaption'], $slidecaptionarray);
     $slidecontent .= html_writer::tag('p', $slide['slidedesc'], array('class' => "", 'data-animation' => $slide['contentAclass']));
 
     if (!empty($slide['slideurl1']) && !empty($slide['slideurltext1'])) {
-        $slideurlarray = array('target' => $slide['btntarget1'], 'class' => 'btn btn-primary '.
-            $slide['contentAclass'], 'data-animation' => 'animated '.$slide['contentAnimation']);
+        $slideurlarray = array('target' => $slide['btntarget1'], 'class' => 'btn btn-primary button-left' .
+            $slide['contentAclass'], 'data-animation' => 'animated ' . $slide['contentAnimation']);
         $slidecontent .= html_writer::link($slide['slideurl1'], $slide['slideurltext1'], $slideurlarray);
+    }
+    if (!empty($slide['slideurl2']) && !empty($slide['slideurltext2'])) {
+        $slideurlarray = array('target' => $slide['btntarget2'], 'class' => 'btn btn-primary button-right' .
+            $slide['contentAclass'], 'data-animation' => 'animated ' . $slide['contentAnimation']);
+        $slidecontent .= html_writer::link($slide['slideurl2'], $slide['slideurltext2'], $slideurlarray);
     }
     $slidecontent .= html_writer::end_tag('div');  // Div Slide-text.
     return $slidecontent;
@@ -231,7 +256,7 @@ if ($general['slideshowStatus'] != 0) {
     $footer = slideshow_footer($general);
     $data = slideshow_body($general);
     if (!empty($data['maincontent'])) {
-        $slider = $header.$data['maincontent'].$footer;
+        $slider = $header . $data['maincontent'] . $footer;
         // Slider Contents are displayed here.
         echo $slider; // Full Slider Contents are printed here.
     }
@@ -242,99 +267,101 @@ if ($general['slideshowStatus'] != 0) {
         $navigation = "true";
     }
     if (isset($data['maincontent']) && !empty($data['maincontent'])) {
-?>
-    <script type="text/javascript" id="camerajs">
-    (function($) {
-        var interval = "<?php echo $general['slideinterval']; ?>";
-        var autoplay = <?php echo $general['autoslideshow'];?>;
-        var slideHeight = "550";
-        var thumbnails = true;
-        var pagination = 'DOTED';
-        var imagePath = <?php echo "'$CFG->wwwroot/theme/enlightlite/images/'"; ?>;
-        var navigation = <?php echo $navigation;?>;
+        ?>
+        <script type="text/javascript" id="camerajs">
+            (function($) {
+                var interval = "<?php echo $general['slideinterval']; ?>";
+                var autoplay = <?php echo $general['autoslideshow']; ?>;
+                var slideHeight = "550";
+                var thumbnails = true;
+                var pagination = 'DOTED';
+                var imagePath = <?php echo "'$CFG->wwwroot/theme/enlightlite/images/'"; ?>;
+                var navigation = <?php echo $navigation; ?>;
 
-        $(document).ready(function(){
+                $(document).ready(function() {
 
-            var wi = $(window).width();
-            var val = ( parseInt(slideHeight) / parseInt(wi) ) * parseInt(100);
-            heightval = val + '%';
+                    var wi = $(window).width();
+                    var val = (parseInt(slideHeight) / parseInt(wi)) * parseInt(100);
+                    heightval = val + '%';
 
-            $('#homepage-carousel').camera({
-                height: heightval,
-                pagination: true,
-                thumbnails: true,
-                time: interval,
-                loaderColor: '#eeeeee',
-                loaderBgColor: '#222222', //'#222222',
-                loaderOpacity: 0.6, // .8
-                loader: 'bar',
-                autoAdvance: autoplay,
-                navigation: navigation,
-                mobileAutoAdvance: true,
-                mobileNavHover: false,
-                imagePath: imagePath,
-                overlayer: false,
-                loaderOpacity:0.7,
-                rows: 4,
-                slicedCols: 7,
-                slicedRows: 5,
-                transPeriod: 1000,
-                barPosition: 'top',
-                easing: 'easeInOutExpo',
-                onEndTransition: function() {
-                   $this = $('.camera_target_content .cameracurrent');
-                    animation();
-                    $('.slide-text').show();
-                },
-            });
-            $("#homepage-carousel").cameraPause();
-            $(window).on("load", function(){
-                if (autoplay == true) {
-                    $("#homepage-carousel").cameraResume();
-                }
-                if ($("#homepage-carousel").width() <= 800) {
-                    $("#homepage-carousel").cameraResume();
-                }
-            });
-
-            function animation() {
-                $this = $('.camera_target_content .cameracurrent')
-                $content = $this.find('.heading-content [data-animation ^= "animated"]');
-                index = 0;
-                if ($content != "undefined" && $content.length != ""){
-                    $content.css({'opacity': 0});
-                    $time = setInterval(function () {
-                        $this = $content;
-                        da = $content.eq(index);
-                        ani = da.attr('data-animation');
-                        da.addClass(ani);
-                        da.css({'opacity': 1});
-                        index++;
-                        if (index == $this.length) {
-                            clearInterval($time);
+                    $('#homepage-carousel').camera({
+                        height: heightval,
+                        pagination: true,
+                        thumbnails: true,
+                        time: interval,
+                        loaderColor: '#eeeeee',
+                        loaderBgColor: '#222222', //'#222222',
+                        loaderOpacity: 0.6, // .8
+                        loader: 'bar',
+                        autoAdvance: autoplay,
+                        navigation: navigation,
+                        mobileAutoAdvance: true,
+                        mobileNavHover: false,
+                        imagePath: imagePath,
+                        overlayer: false,
+                        loaderOpacity: 0.7,
+                        rows: 4,
+                        slicedCols: 7,
+                        slicedRows: 5,
+                        transPeriod: 1000,
+                        barPosition: 'top',
+                        easing: 'easeInOutExpo',
+                        onEndTransition: function() {
+                            $this = $('.camera_target_content .cameracurrent');
+                            animation();
+                            $('.slide-text').show();
+                        },
+                    });
+                    $("#homepage-carousel").cameraPause();
+                    $(window).on("load", function() {
+                        if (autoplay == true) {
+                            $("#homepage-carousel").cameraResume();
                         }
-                        doAnimations(da);
-                    }, 400);
+                        if ($("#homepage-carousel").width() <= 800) {
+                            $("#homepage-carousel").cameraResume();
+                        }
+                    });
 
-                }
-            }
+                    function animation() {
+                        $this = $('.camera_target_content .cameracurrent')
+                        $content = $this.find('.heading-content [data-animation ^= "animated"]');
+                        index = 0;
+                        if ($content != "undefined" && $content.length != "") {
+                            $content.css({
+                                'opacity': 0
+                            });
+                            $time = setInterval(function() {
+                                $this = $content;
+                                da = $content.eq(index);
+                                ani = da.attr('data-animation');
+                                da.addClass(ani);
+                                da.css({
+                                    'opacity': 1
+                                });
+                                index++;
+                                if (index == $this.length) {
+                                    clearInterval($time);
+                                }
+                                doAnimations(da);
+                            }, 400);
 
-            function doAnimations(elems) {
-              var animEndEv = 'webkitAnimationEnd animationend';
-              elems.each(function () {
-                var $this = $(this),
-                    $animationType = $this.data('animation');
-                $this.addClass($animationType).one(animEndEv, function () {
-                  $this.removeClass($animationType);
+                        }
+                    }
+
+                    function doAnimations(elems) {
+                        var animEndEv = 'webkitAnimationEnd animationend';
+                        elems.each(function() {
+                            var $this = $(this),
+                                $animationType = $this.data('animation');
+                            $this.addClass($animationType).one(animEndEv, function() {
+                                $this.removeClass($animationType);
+                            });
+                        });
+                    }
                 });
-              });
-            }
-        });
-    })(jQuery);
-    </script>
+            })(jQuery);
+        </script>
 <?php
     } // Check maincontents are not empty.
 } // Check number of slides is more than one.
  // Check the slideshow is diable or enable.
-
-

@@ -30,7 +30,8 @@ defined('MOODLE_INTERNAL') || die();
  * Return the set of valuse for the footer blocks template.
  * @return type|array
  */
-function footer_template() {
+function footer_template()
+{
     global $CFG, $PAGE, $OUTPUT;
     // Footer Blocks.
     $copyright = theme_enlightlite_get_setting('copyright');
@@ -58,37 +59,48 @@ function footer_template() {
     $totalenable = $footerb1 + $footerb2 + $footerb3 + $footerb4;
     $footermain = 1;
 
-    switch($totalenable) {
-        case 4 :
+    switch ($totalenable) {
+        case 4:
             $colclass = 'col-md-3';
-        break;
+            break;
 
         case 3:
             $colclass = 'col-md-4';
-        break;
+            break;
 
         case 2:
             $colclass = 'col-md-6';
-        break;
+            break;
 
         case 1:
             $colclass = 'col-md-12';
-        break;
+            break;
 
         case 0:
             $footermain = 0;
             $colclass = '';
-        break;
+            break;
 
         default:
             $colclass = 'col-md-3';
     }
+
     $footerb4iconclass = theme_enlightlite_footer_address('true');
     $footericonclass = ($footerb4iconclass == "true") ? "footer-small-socials" : "";
     $footeraddress = theme_enlightlite_footer_address();
+    $course = theme_enlightlite_get_courses();
+    $courses = [];
+    foreach ($course as $item) {
+        array_push($courses, $item);
+    }
 
+    //print_object($courses);
+    $url = theme_enlightlite_get_url();
+    //print_r($url);
     $templatecontext = [
-    'output' => $OUTPUT,
+        'output' => $OUTPUT,
+        'url' => $url,
+        'courses' => $courses,
         "copyright" => $copyright,
         "fb1title" => $fb1title,
         "fb2title" => $fb2title,
@@ -106,7 +118,7 @@ function footer_template() {
         'footericonclass' => $footericonclass,
         "colClass" => $colclass,
         "footermain" => $footermain,
-        "backToTop" => $backtotopstatus,
+        "backToTop" => $backtotopstatus
     ];
     return $templatecontext;
 }

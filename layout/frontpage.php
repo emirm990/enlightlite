@@ -132,7 +132,6 @@ echo $OUTPUT->doctype() ?>
                             <img src="<?php echo $rightimage1 ?>" alt="">
                             <h3><?php echo $mspot2titler1; ?></h3>
                             <p><?php echo $msp2descr1; ?></p>
-
                         </div>
                         <div class="item">
                             <img src="<?php echo $rightimage2 ?>" alt="">
