@@ -192,7 +192,14 @@ echo $OUTPUT->doctype() ?>
         <?php
         }
         ?>
-
+        <div>
+            <?php
+            $eventtitle = theme_enlightlite_get_setting('event1title');
+            $eventdesc = theme_enlightlite_get_setting('event1description');
+            print_r($eventtitle);
+            print_r($eventdesc);
+            ?>
+        </div>
         <!--E.O.Marketing Spot 1 -->
         <div id="page" class="enlightlite-frontpage" style="">
             <header id="page-header" class="clearfix">
@@ -213,6 +220,7 @@ echo $OUTPUT->doctype() ?>
             </div>
         </div>
     </div>
+
     <?php echo $flatnavbar; ?>
     <!--Testimonials-->
     <?php
