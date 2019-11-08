@@ -196,8 +196,10 @@ echo $OUTPUT->doctype() ?>
             <?php
             $eventtitle = theme_enlightlite_get_setting('event1title');
             $eventdesc = theme_enlightlite_get_setting('event1description');
+            $eventstatus = theme_enlightlite_get_setting('event1status');
             print_r($eventtitle);
             print_r($eventdesc);
+            print_r($eventstatus);
             ?>
         </div>
         <!--E.O.Marketing Spot 1 -->
