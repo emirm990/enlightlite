@@ -599,20 +599,31 @@ function theme_enlightlite_marketingspot1()
     $description = theme_enlightlite_get_setting('mspot1desc');
     $title = theme_enlightlite_lang(theme_enlightlite_get_setting('mspot1title'));
     $media = theme_enlightlite_get_setting('mspot1media', 'format_html');
+    $titles = [];
+    $images = [];
+    $texts = [];
+    for ($i = 1; $i <= 4; $i++) {
+        array_push($titles, theme_enlightlite_get_setting('mspot1titler' . $i, 'format_html'));
+        array_push($images, theme_enlightlite_render_slideimg('mspot1rightimage' . $i, 'mspot1rightimage' . $i));
+        array_push($texts, theme_enlightlite_get_setting('mspot1descr' . $i, 'format_html'));
+    }
+
+    /*$title1 = theme_enlightlite_get_setting('mspot1titler1', 'format_html');
+    $title1 = theme_enlightlite_get_setting('mspot1titler1', 'format_html');*/
     if (!empty($media)) {
         $classmedia = 'video-visible';
     } else {
         $classmedia = "";
     }
     $content = '';
-    if (!empty($title)) {
+    /*if (!empty($title)) {
         $title = explode(' ', $title);
         $title1 = (array_key_exists(0, $title)) ? $title[0] : $title;
         $title2 = array_slice($title, 1);
         $title2 = implode(' ', $title2);
     } else {
         $title1 = $title2 = "";
-    }
+    }*/
     if (isset($status) && $status == 1) {
         $description = theme_enlightlite_lang($description);
         if (!empty($description) || !empty($media)) {
@@ -631,7 +642,7 @@ function theme_enlightlite_marketingspot1()
             $content .= html_writer::start_tag('div', array('class' => 'container'));
 
             $content .= html_writer::start_tag('div', array('class' => 'info-content ' . $classmedia));
-            $content .= html_writer::tag('h2', html_writer::tag('b', $title1) . " " . $title2, array('style' => $hide));
+            $content .= html_writer::tag('h2',  $title, array('style' => $hide));
 
             $content .= html_writer::start_tag('div', array('class' => 'info-video'));
             $content .= $media;
@@ -639,10 +650,38 @@ function theme_enlightlite_marketingspot1()
 
             if (!empty($description)) {
                 $content .= html_writer::start_tag('div', array('class' => 'info-block'));
-                $content .= html_writer::tag('h2', html_writer::tag('b', $title1) . " " . $title2, array('style' => $hide2));
+                $content .= html_writer::tag('h2', $title, array('style' => $hide2));
                 $content .= html_writer::tag('p', $description);
                 $content .= html_writer::end_tag('div');
             }
+
+            $content .= html_writer::start_tag('div', array('class' => 'promo-blocks'));
+            for ($i = 0; $i <= 3; $i++) {
+                if (!empty($titles[$i]) || !empty($texts[$i]) || !empty($images[$i])) {
+                    $content .= html_writer::start_tag('div', array('class' =>  'promo-block'));
+                    if (!empty($images[$i])) {
+                        $content .= html_writer::empty_tag('img', array(
+                            'src' => $images[$i]
+                        ));
+                    };
+                    if (!empty($titles[$i]) || !empty($texts[$i])) {
+                        $content .= html_writer::start_tag('div', array('class' =>  'promo-block-content'));
+                        if (!empty($titles[$i])) {
+                            $content .= html_writer::tag('h3', $titles[$i]);
+                        }
+                        if (!empty($texts[$i])) {
+                            $content .= html_writer::tag('p', $texts[$i]);
+                        }
+
+                        $content .= html_writer::end_tag('div');
+                    }
+
+                    $content .= html_writer::end_tag('div');
+                }
+            }
+
+            $content .= html_writer::end_tag('div');
+
             $content .= html_writer::end_tag('div');
             $content .= html_writer::end_tag('div');
             $content .= html_writer::end_tag('div');
