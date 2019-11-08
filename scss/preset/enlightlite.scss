@@ -119,7 +119,6 @@ $content_width: 40%;
 %extend_1 {
     font-weight: normal;
     color: $color_mine_shaft_approx;
-    text-transform: uppercase;
 }
 
 //original selectors
@@ -3127,7 +3126,7 @@ input[type="reset"][disabled] {
     }
 }
 .site-info {
-    background-color: $wild_sand;
+    background-color: #ededed;
     padding: 40px 0 20px;
     .info-video {
         max-width: 550px;
@@ -3140,10 +3139,9 @@ input[type="reset"][disabled] {
         }
     }
     h2 {
-        color: $color_picton_blue_approx;
-        font-size: 38px;
-        font-family: $font_3, $font_5, $font_6, $font_7;
-        text-align: center;
+        color: $color_mine_shaft_approx;
+        font-size: 40px;
+        text-align: left;
         margin-bottom: 20px;
         b {
             color: $color_tuatara_approx;

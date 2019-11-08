@@ -57,3 +57,23 @@ body {
 	margin-bottom: 25px;
 	border-radius: 6px;
 }
+.promo-blocks {
+	margin-top: 20px;
+	width: 60%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	.promo-block {
+		display: flex;
+		flex-basis: 50%;
+		align-items: center;
+		img {
+			width: 90px;
+			height: 100%;
+			margin-right: 10px;
+		}
+	}
+}
+.info-block {
+	width: 70%;
+}
