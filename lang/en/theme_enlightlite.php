@@ -45,6 +45,7 @@ $string['customcss'] = 'Custom SCSS';
 $string['customcssdesc'] = 'Use this field to provide SCSS or CSS code which will be injected at the end of the style sheet.';
 $string['enable'] = 'Enable';
 $string['enlightlite_settings'] = "ENLIGHTLITE THEME SETTINGS";
+$string['edukul'] = "Edukul";
 $string['featuredcoursesheading'] = 'Featured Courses';
 $string['footerblock'] = 'Footer Block';
 $string['footerbtitledesc'] = 'Enter a title for this block as plain text or lang:language_key for multi-lingual support. You can find the theme language keys here: /theme/enlightlite/lang/en/theme_enlightlite.php';
