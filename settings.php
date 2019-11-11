@@ -51,7 +51,7 @@ if ($ADMIN->fulltree) {
         '2' => get_string("lavender", "theme_enlightlite"),
         '3' => get_string("red", "theme_enlightlite"),
         '4' => get_string("purple", "theme_enlightlite"),
-        '5' => get_string("edukul", "theme_enlightlite")
+        '5' => "edukul"
     );
 
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
@@ -204,8 +204,8 @@ if ($ADMIN->fulltree) {
 
         // Slide Top Caption.
         $name = 'theme_enlightlite/slidetop' . $i . 'caption';
-        $title = get_string('slidetopcaption', 'theme_enlightlite', array('slide' => $i));
-        $description = get_string('slidetopcaptiondesc', 'theme_enlightlite');
+        $title = 'Slide top caption ' . $i;
+        $description = "Top caption of frontpage slideshow  " . $i;
         $default = 'lang:slidetopcaptiondefault';
         $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
         $temp->add($setting);
@@ -366,7 +366,7 @@ if ($ADMIN->fulltree) {
     $temp->add($setting);
 
     $name = 'theme_enlightlite_mspot1additional';
-    $heading = get_string('mspot1additional', 'theme_enlightlite') . ' 1 (' . get_string('aboutustxt', 'theme_enlightlite') . ')';
+    $heading = "Additional marketing spot 1 blocks settings";
     $information = '';
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
@@ -374,8 +374,8 @@ if ($ADMIN->fulltree) {
     for ($i = 1; $i <= 4; $i++) {
         // Marketing Spot 1 Right Title
         $name = 'theme_enlightlite/mspot1titler' . $i;
-        $title = get_string('mspot1titler' . $i, 'theme_enlightlite');
-        $description = get_string('mspottitledescr' . $i, 'theme_enlightlite');
+        $title = 'Additional marketing spot right title ' . $i;
+        $description = "Marketing spot right title " . $i;
         $default = 'lang:learnanytime';
         $setting = new admin_setting_configtext($name, $title, $description, $default);
         $temp->add($setting);
@@ -383,16 +383,16 @@ if ($ADMIN->fulltree) {
         // Marketing Spot 1 Right Image
 
         $name = 'theme_enlightlite/mspot1rightimage' . $i;
-        $title = get_string('mspot1rightimage' . $i, 'theme_enlightlite', array('rightimage' => $i));
-        $description = get_string('mspot1rightimage' . $i, 'theme_enlightlite');
+        $title = 'Additional marketing spot right image ' . $i;
+        $description = 'Additional marketing spot right image ' . $i;
         $setting = new admin_setting_configstoredfile($name, $title, $description, 'mspot1rightimage' . $i);
         $setting->set_updatedcallback('theme_reset_all_caches');
         $temp->add($setting);
 
         //Marketing Spot 1 Right Desc
         $name = 'theme_enlightlite/mspot1descr' . $i;
-        $title = get_string('description' . $i);
-        $description = get_string('mspot1descr' . $i, 'theme_enlightlite');
+        $title = 'Additional marketing spot right text content ' . $i;
+        $description = 'Additional marketing spot right text content ' . $i;
         $default = 'lang:learnanytimedesc';
         $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
         $temp->add($setting);
@@ -462,7 +462,7 @@ if ($ADMIN->fulltree) {
     $settings->add($temp);
 
     $name = 'theme_enlightlite_mspot2additional';
-    $heading = get_string('mspot2additional', 'theme_enlightlite') . ' 1 (' . get_string('learntitle', 'theme_enlightlite') . ')';
+    $heading = 'Marketing spot 2 additional settings';
     $information = '';
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
@@ -470,24 +470,24 @@ if ($ADMIN->fulltree) {
     for ($i = 1; $i <= 4; $i++) {
         // Marketing Spot 2 Right Title 1
         $name = 'theme_enlightlite/mspot2titler' . $i;
-        $title = get_string('titler' . $i, 'theme_enlightlite');
-        $description = get_string('mspottitledescr' . $i, 'theme_enlightlite');
+        $title = 'Marketing spot ' . $i . ' title';
+        $description = 'Marketing spot ' . $i . ' title';
         $default = 'lang:learnanytime';
         $setting = new admin_setting_configtext($name, $title, $description, $default);
         $temp->add($setting);
 
         // Marketing Spot 2 Right Image 1
         $name = 'theme_enlightlite/rightimage' . $i;
-        $title = get_string('rightimage' . $i, 'theme_enlightlite', array('rightimage' => $i));
-        $description = get_string('rightimagedes' . $i, 'theme_enlightlite');
+        $title = 'Marketing spot ' . $i . ' image';
+        $description = 'Marketing spot ' . $i . ' image';
         $setting = new admin_setting_configstoredfile($name, $title, $description, 'rightimage' . $i);
         $setting->set_updatedcallback('theme_reset_all_caches');
         $temp->add($setting);
 
         //Marketing Spot 2 Right Desc 1
         $name = 'theme_enlightlite/mspot2descr' . $i;
-        $title = get_string('description' . $i);
-        $description = get_string('mspotdescdescr' . $i, 'theme_enlightlite');
+        $title = 'Marketing spot ' . $i . ' text content';
+        $description = 'Marketing spot ' . $i . ' text content';
         $default = 'lang:learnanytimedesc';
         $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
         $temp->add($setting);
@@ -496,42 +496,369 @@ if ($ADMIN->fulltree) {
     /* Events Settings Page */
     $temp = new admin_settingpage('theme_enlightlite_events', "Events");
 
-    $name = 'theme_enlightlite_event1';
-    $heading = "Event 1"; //get_string('events', 'theme_enlightlite');
+    $name = 'theme_enlightlite_events_enable';
+    $heading = "Enable events?"; //get_string('events', 'theme_enlightlite');
     $information = '';
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
 
-    /* event 1 */
-
-    $name = 'theme_enlightlite/event1status';
-    $title = "Show Event 1";
-    $description = "Chose no if you don't want this event on frontpage";
+    $name = 'theme_enlightlite/eventsenabled';
+    $title = "Show Events?";
+    $description = "Chose no if you don't want events on frontpage";
     $yes = get_string('yes');
     $no = get_string('no');
-    $default = 1;
+    $default = 0;
     $choices = array(1 => $yes, 0 => $no);
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $temp->add($setting);
 
-    $name = 'theme_enlightlite/event1title';
-    $title = "Event 1 Title";
-    $description = "Enter your event Title.";
-    $setting = new admin_setting_configtext($name, $title, $description, PARAM_TEXT);
-    $temp->add($setting);
+    /* events 1 - 3 */
+    for ($i = 1; $i < 4; $i++) {
+        $name = 'theme_enlightlite_event' . $i;
+        $heading = "Event " . $i; //get_string('events', 'theme_enlightlite');
+        $information = '';
+        $setting = new admin_setting_heading($name, $heading, $information);
+        $temp->add($setting);
 
-    $name = 'theme_enlightlite/event1description';
-    $title = "Event 1 Description";
-    $description = "Enter your event description";
-    $setting = new admin_setting_configtextarea($name, $title, $description, PARAM_TEXT);
-    $temp->add($setting);
+        $name = 'theme_enlightlite/event' . $i . 'status';
+        $title = "Show Event " . $i;
+        $description = "Chose no if you don't want this event on frontpage";
+        $yes = get_string('yes');
+        $no = get_string('no');
+        $default = 0;
+        $choices = array(1 => $yes, 0 => $no);
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
 
-    /*$name = 'theme_enlightlite/event1time';
-    $hours = '0';
-    $minutes = '0';
-    $description = "Enter your event time";
-    $setting = new admin_setting_configtime($hours, $minutes, $name, $description, array('h' => '0', 'm' => '0'));
-    $temp->add($setting);*/
+        $name = 'theme_enlightlite/event' . $i . 'title';
+        $title = "Event" . $i . "Title";
+        $default = "Default title " . $i;
+        $description = "Enter your event Title.";
+        $setting = new admin_setting_configtext($name, $title,  $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'description';
+        $title = "Event" . $i . "Description";
+        $description = "Enter your event description";
+        $setting = new admin_setting_configtextarea($name, $title, $description, PARAM_TEXT);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/eventimage' . $i;
+        $title = 'Event background ' . $i . ' image';
+        $description = 'Event background ' . $i . ' image';
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'eventimage' . $i);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'hour';
+        $title = 'Event ' . $i . ' hour';
+        $description = 'Event ' . $i . ' hour';
+        $default = '00';
+        $choices = array(
+            '00' => '00',
+            '01' => '01',
+            '02' => '02',
+            '03' => '03',
+            '04' => '04',
+            '05' => '05',
+            '06' => '06',
+            '07' => '07',
+            '08' => '08',
+            '09' => '09',
+            '10' => '10',
+            '11' => '11',
+            '12' => '12',
+            '13' => '13',
+            '14' => '14',
+            '15' => '15',
+            '16' => '16',
+            '17' => '17',
+            '18' => '18',
+            '19' => '19',
+            '20' => '20',
+            '21' => '21',
+            '22' => '22',
+            '23' => '23',
+        );
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'minute';
+        $title = 'Event ' . $i . ' minute';
+        $description = 'Event ' . $i . ' minute';
+        $default = '00';
+        $choices = array(
+            '00' => '00',
+            '01' => '01',
+            '02' => '02',
+            '03' => '03',
+            '04' => '04',
+            '05' => '05',
+            '06' => '06',
+            '07' => '07',
+            '08' => '08',
+            '09' => '09',
+            '10' => '10',
+            '11' => '11',
+            '12' => '12',
+            '13' => '13',
+            '14' => '14',
+            '15' => '15',
+            '16' => '16',
+            '17' => '17',
+            '18' => '18',
+            '19' => '19',
+            '20' => '20',
+            '21' => '21',
+            '22' => '22',
+            '23' => '23',
+            '24' => '24',
+            '25' => '25',
+            '26' => '26',
+            '27' => '27',
+            '28' => '28',
+            '29' => '29',
+            '30' => '30',
+            '31' => '31',
+            '32' => '32',
+            '33' => '33',
+            '34' => '34',
+            '35' => '35',
+            '36' => '36',
+            '37' => '37',
+            '38' => '38',
+            '39' => '39',
+            '40' => '40',
+            '41' => '41',
+            '42' => '42',
+            '43' => '43',
+            '44' => '44',
+            '45' => '45',
+            '46' => '46',
+            '47' => '47',
+            '48' => '48',
+            '49' => '49',
+            '50' => '50',
+            '51' => '51',
+            '52' => '52',
+            '53' => '53',
+            '54' => '54',
+            '55' => '55',
+            '56' => '56',
+            '57' => '57',
+            '58' => '58',
+            '59' => '59'
+        );
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'month';
+        $title = 'Event ' . $i . ' month';
+        $description = 'Event ' . $i . ' month';
+        $default = date('m');
+        $choices = array(
+            '01' => 'JAN',
+            '02' => 'FEB',
+            '03' => 'MAR',
+            '04' => 'APR',
+            '05' => 'MAY',
+            '06' => 'JUN',
+            '07' => 'JUL',
+            '08' => 'AUG',
+            '09' => 'SEP',
+            '10' => 'OCT',
+            '11' => 'NOV',
+            '12' => 'DEC'
+        );
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'day';
+        $title = 'Event ' . $i . ' day';
+        $description = 'Event ' . $i . ' day';
+        $default = date("d");
+        $choices = array(
+            '01' => '01',
+            '02' => '02',
+            '03' => '03',
+            '04' => '04',
+            '05' => '05',
+            '06' => '06',
+            '07' => '07',
+            '08' => '08',
+            '09' => '09',
+            '10' => '10',
+            '11' => '11',
+            '12' => '12',
+            '13' => '13',
+            '14' => '14',
+            '15' => '15',
+            '16' => '16',
+            '17' => '17',
+            '18' => '18',
+            '19' => '19',
+            '20' => '20',
+            '21' => '21',
+            '22' => '22',
+            '23' => '23',
+            '24' => '24',
+            '25' => '25',
+            '26' => '26',
+            '27' => '27',
+            '28' => '28',
+            '29' => '29',
+            '30' => '30',
+            '31' => '31'
+        );
+        $choices2 = array(
+            '01' => '01',
+            '02' => '02',
+            '03' => '03',
+            '04' => '04',
+            '05' => '05',
+            '06' => '06',
+            '07' => '07',
+            '08' => '08',
+            '09' => '09',
+            '10' => '10',
+            '11' => '11',
+            '12' => '12',
+            '13' => '13',
+            '14' => '14',
+            '15' => '15',
+            '16' => '16',
+            '17' => '17',
+            '18' => '18',
+            '19' => '19',
+            '20' => '20',
+            '21' => '21',
+            '22' => '22',
+            '23' => '23',
+            '24' => '24',
+            '25' => '25',
+            '26' => '26',
+            '27' => '27',
+            '28' => '28',
+            '29' => '29',
+            '30' => '30'
+        );
+        $choices3 = array(
+            '01' => '01',
+            '02' => '02',
+            '03' => '03',
+            '04' => '04',
+            '05' => '05',
+            '06' => '06',
+            '07' => '07',
+            '08' => '08',
+            '09' => '09',
+            '10' => '10',
+            '11' => '11',
+            '12' => '12',
+            '13' => '13',
+            '14' => '14',
+            '15' => '15',
+            '16' => '16',
+            '17' => '17',
+            '18' => '18',
+            '19' => '19',
+            '20' => '20',
+            '21' => '21',
+            '22' => '22',
+            '23' => '23',
+            '24' => '24',
+            '25' => '25',
+            '26' => '26',
+            '27' => '27',
+            '28' => '28',
+            '29' => '29'
+        );
+        $choices4 = array(
+            '01' => '01',
+            '02' => '02',
+            '03' => '03',
+            '04' => '04',
+            '05' => '05',
+            '06' => '06',
+            '07' => '07',
+            '08' => '08',
+            '09' => '09',
+            '10' => '10',
+            '11' => '11',
+            '12' => '12',
+            '13' => '13',
+            '14' => '14',
+            '15' => '15',
+            '16' => '16',
+            '17' => '17',
+            '18' => '18',
+            '19' => '19',
+            '20' => '20',
+            '21' => '21',
+            '22' => '22',
+            '23' => '23',
+            '24' => '24',
+            '25' => '25',
+            '26' => '26',
+            '27' => '27',
+            '28' => '28'
+        );
+        $currentMonth = theme_enlightlite_get_setting('event' . $i . 'month');
+        $currentYear = date("Y");
+        $leapYear = false;
+        if ((0 == $currentYear % 4) & (0 != $currentYear % 100) | (0 == $currentYear % 400)) {
+            $leapYear = true;
+        } else {
+            $leapYear = false;
+        }
+        $numberOfDays = '31';
+        if (
+            $currentMonth == '01' || $currentMonth == '03' || $currentMonth == '05' ||
+            $currentMonth == '07' ||
+            $currentMonth == '08' ||
+            $currentMonth == '10' ||
+            $currentMonth == '12'
+        ) {
+            $numberOfDays = "31";
+        } else {
+            if ($leapYear && $currentMonth == '02') {
+                $numberOfDays = "29";
+            } elseif (!$leapYear && $currentMonth == '02') {
+                $numberOfDays =  "28";
+            } else {
+                $numberOfDays = "30";
+            }
+        }
+        $monthLength = $numberOfDays;
+
+        if ($monthLength == '31') {
+            $choices = $choices;
+        } elseif ($monthLength == '30') {
+            $choices = $choices2;
+        } else {
+            if ($leapYear) {
+                $choices = $choices3;
+            } else {
+                $choices = $choices4;
+            }
+        }
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'year';
+        $title = 'Event ' . $i . ' year';
+        $description = 'Event ' . $i . ' year';
+        $default = date('Y');
+        $choices = array(
+            date('Y') => date('Y'),
+            date('Y', strtotime('+1 year')) =>  date('Y', strtotime('+1 year')),
+            date('Y', strtotime('+2 year')) =>  date('Y', strtotime('+2 year')),
+            date('Y', strtotime('+3 year')) =>  date('Y', strtotime('+3 year')),
+            date('Y', strtotime('+4 year')) =>  date('Y', strtotime('+4 year'))
+        );
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+    }
 
     $settings->add($temp);
     /*Events End*/
