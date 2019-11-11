@@ -38,6 +38,7 @@ function theme_enlightlite_get_courses()
     $course = $DB->get_records_sql($sql);
     return $course;
 }
+
 function theme_enlightlite_get_url()
 {
     global $CFG;
