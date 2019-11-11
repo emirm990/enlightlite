@@ -192,35 +192,138 @@ echo $OUTPUT->doctype() ?>
         <?php
         }
         ?>
-        <div>
-            <?php
-            $eventtitle = theme_enlightlite_get_setting('event1title');
-            $eventdesc = theme_enlightlite_get_setting('event1description');
-            $eventstatus = theme_enlightlite_get_setting('event1status');
-            print_r($eventtitle);
-            print_r($eventdesc);
-            print_r($eventstatus);
-            ?>
-        </div>
-        <!--E.O.Marketing Spot 1 -->
-        <div id="page" class="enlightlite-frontpage" style="">
-            <header id="page-header" class="clearfix">
-                <div id="course-header">
-                    <?php echo $OUTPUT->course_header(); ?>
+        <?php
+        $eventsenabled = theme_enlightlite_get_setting('eventsenabled');
+        function monthName($month)
+        {
+            switch ($month) {
+                case '01':
+                    return "JAN";
+                    break;
+                case '02':
+                    return "FEB";
+                    break;
+                case '03':
+                    return "MAR";
+                    break;
+                case '04':
+                    return "APR";
+                    break;
+                case '05':
+                    return "MAY";
+                    break;
+                case '06':
+                    return "JUN";
+                    break;
+                case '07':
+                    return "JUL";
+                    break;
+                case '08':
+                    return "AUG";
+                    break;
+                case '09':
+                    return "SEP";
+                    break;
+                case '10':
+                    return "OCT";
+                    break;
+                case '11':
+                    return "NOV";
+                    break;
+                case '12':
+                    return "DEC";
+                    break;
+                default:
+                    return "ERR";
+                    break;
+            }
+        }
+        $event1title = theme_enlightlite_get_setting('event1title');
+        $event1desc = theme_enlightlite_get_setting('event1description');
+        $event1status = theme_enlightlite_get_setting('event1status');
+        $event1hour = theme_enlightlite_get_setting('event1hour');
+        $event1minute = theme_enlightlite_get_setting('event1minute');
+        $event1day = theme_enlightlite_get_setting('event1day');
+        $event1month = monthName(theme_enlightlite_get_setting('event1month'));
+        $event1year = theme_enlightlite_get_setting('event1year');
+        $event1image = theme_enlightlite_render_slideimg('eventimage1', 'eventimage1');
+        $event2title = theme_enlightlite_get_setting('event2title');
+        $event2desc = theme_enlightlite_get_setting('event2description');
+        $event2status = theme_enlightlite_get_setting('event2status');
+        $event2hour = theme_enlightlite_get_setting('event2hour');
+        $event2minute = theme_enlightlite_get_setting('event2minute');
+        $event2day = theme_enlightlite_get_setting('event2day');
+        $event2month = monthName(theme_enlightlite_get_setting('event2month'));
+        $event2year = theme_enlightlite_get_setting('event2year');
+        $event2image = theme_enlightlite_render_slideimg('eventimage2', 'eventimage2');
+        $event3title = theme_enlightlite_get_setting('event3title');
+        $event3desc = theme_enlightlite_get_setting('event3description');
+        $event3status = theme_enlightlite_get_setting('event3status');
+        $event3hour = theme_enlightlite_get_setting('event3hour');
+        $event3minute = theme_enlightlite_get_setting('event3minute');
+        $event3day = theme_enlightlite_get_setting('event3day');
+        $event3month = monthName(theme_enlightlite_get_setting('event3month'));
+        $event3year = theme_enlightlite_get_setting('event3year');
+        $event3image = theme_enlightlite_render_slideimg('eventimage3', 'eventimage3');
+        if ($eventsenabled == '1') { ?>
+                <div class="events">
+                    <h2>Our Upcoming Events</h2>
                 </div>
-            </header>
-            <div id="page-content">
-
-                <div id="<?php echo $regionbsid ?>">
+                <div class="event-container container">
                     <?php
-                    echo $OUTPUT->course_content_header();
-                    echo $OUTPUT->main_content();
-                    echo $OUTPUT->course_content_footer();
-                    ?>
+                        if ($event1status == '1') {
+                            ?>
+                        <div class="event-main" style="background-image:url(<?php echo $event1image ?>)">
+                            <p><span class="date"><?php echo $event1day, " ", $event1month, " ", $event1year ?></span> <span class="time"><?php echo $event1hour, ':', $event1minute, "-", "todo: end date" ?></span></p>
+                            <h3><?php echo $event1title ?></h3>
+                        </div>
+                    <?php
+                        }
+                        ?>
+                    <?php if ($event2status = '1' || $event3status = '1') {
+                            ?>
+                        <div class="event-secondary">
+                            <?php
+                                    if ($event2status == '1') {
+                                        ?>
+                                <div class="event-top" style="background-image:url(<?php echo $event2image ?>)">
+                                    <p><span class="date"><?php echo $event2day, " ", $event2month, " ", $event2year ?></span> <span class="time"><?php echo $event2hour, ':', $event2minute, "-", "todo: end date" ?></span></p>
+                                    <h3><?php echo $event2title ?></h3>
+                                </div>
+                            <?php } ?>
+                            <?php
+                                    if ($event3status == '1') {
+                                        ?>
+                                <div class="event-bot" style="background-image:url(<?php echo $event3image ?>)">
+                                    <p><span class="date"><?php echo $event3day, " ", $event3month, " ", $event3year ?></span> <span class="time"><?php echo $event3hour, ':', $event3minute, "-", "todo: end date" ?></span></p>
+                                    <h3><?php echo $event3title ?></h3>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
                 </div>
-                <?php echo $OUTPUT->blocks('side-pre', 'col-md-3'); ?>
+            <?php
+            }
+            ?>
+            <!--E.O.Marketing Spot 1 -->
+            <div id="page" class="enlightlite-frontpage" style="">
+                <header id="page-header" class="clearfix">
+                    <div id="course-header">
+                        <?php echo $OUTPUT->course_header(); ?>
+                    </div>
+                </header>
+                <div id="page-content">
+
+                    <div id="<?php echo $regionbsid ?>">
+                        <?php
+                        echo $OUTPUT->course_content_header();
+                        echo $OUTPUT->main_content();
+                        echo $OUTPUT->course_content_footer();
+                        ?>
+                    </div>
+                    <?php echo $OUTPUT->blocks('side-pre', 'col-md-3'); ?>
+                </div>
             </div>
-        </div>
     </div>
 
     <?php echo $flatnavbar; ?>
