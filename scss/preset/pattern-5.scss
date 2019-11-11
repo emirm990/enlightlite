@@ -17,6 +17,7 @@ body {
 .jumbo-viewall .inner-wrap .btn-jumbo {
 	position: static !important;
 	margin-top: 15px !important;
+	background-color: $orange;
 }
 .jumbo-viewall .inner-wrap p {
 	font-size: 16px;
@@ -76,4 +77,66 @@ body {
 }
 .info-block {
 	width: 70%;
+}
+.events {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	h2 {
+		text-align: center;
+		font-weight: bold;
+	}
+}
+.event-container {
+	display: flex;
+	flex-wrap: wrap;
+	height: 800px;
+	margin-bottom: 25px;
+	margin-top: 25px;
+	color: #fff;
+	h3 {
+		color: #fff;
+		padding-left: 20px;
+		padding-bottom: 20px;
+	}
+	p {
+		padding-left: 20px;
+	}
+	.event-main {
+		flex-basis: 49%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		margin-right: 1%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+	.event-secondary {
+		flex-basis: 50%;
+		.event-top {
+			background-repeat: no-repeat;
+			background-size: cover;
+			margin-bottom: 15px;
+			height: calc(50% - 15px);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+		.event-bot {
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+	}
+}
+.btn-primary {
+	background-color: #1177d1;
+	border-color: #1177d1;
+	transition: all 0.2s ease-in-out;
+	&:hover {
+		background-color: rgba(17, 119, 209, 0.8);
+		border-color: rgba(17, 119, 209, 0.8);
+	}
 }
