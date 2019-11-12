@@ -116,6 +116,8 @@ echo $OUTPUT->doctype() ?>
         $rightimage3 = theme_enlightlite_render_slideimg('rightimage3', 'rightimage3');
         $rightimage4 = theme_enlightlite_render_slideimg('rightimage4', 'rightimage4');
         $target = ($mspot2urltarget == '1') ? "_blank" : "_self";
+        ?>
+        <?php
         if ($mspot2status == '1') {
             ?>
             <div class="jumbo-viewall">
@@ -240,32 +242,115 @@ echo $OUTPUT->doctype() ?>
         }
         $event1title = theme_enlightlite_get_setting('event1title');
         $event1desc = theme_enlightlite_get_setting('event1description');
+        $event1location = theme_enlightlite_get_setting('event1location');
         $event1status = theme_enlightlite_get_setting('event1status');
-        $event1hour = theme_enlightlite_get_setting('event1hour');
-        $event1minute = theme_enlightlite_get_setting('event1minute');
+        $eventstart1hour = theme_enlightlite_get_setting('eventstart1hour');
+        $eventstart1minute = theme_enlightlite_get_setting('eventstart1minute');
+        $event1duration = theme_enlightlite_get_setting('event1duration');
         $event1day = theme_enlightlite_get_setting('event1day');
         $event1month = monthName(theme_enlightlite_get_setting('event1month'));
         $event1year = theme_enlightlite_get_setting('event1year');
+        $event1starttime = strtotime($event1day . $event1month . $event1year . $eventstart1hour . $eventstart1minute);
+        $event1endtime = date('d/M/Y:H:i:s', $event1starttime + $event1duration);
+        $event1endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event1endtime)->format("H");
+        $event1endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event1endtime)->format("i");
         $event1image = theme_enlightlite_render_slideimg('eventimage1', 'eventimage1');
+
         $event2title = theme_enlightlite_get_setting('event2title');
         $event2desc = theme_enlightlite_get_setting('event2description');
+        $event2location = theme_enlightlite_get_setting('event2location');
         $event2status = theme_enlightlite_get_setting('event2status');
-        $event2hour = theme_enlightlite_get_setting('event2hour');
-        $event2minute = theme_enlightlite_get_setting('event2minute');
+        $eventstart2hour = theme_enlightlite_get_setting('eventstart2hour');
+        $eventstart2minute = theme_enlightlite_get_setting('eventstart2minute');
+        $event2duration = theme_enlightlite_get_setting('event2duration');
         $event2day = theme_enlightlite_get_setting('event2day');
         $event2month = monthName(theme_enlightlite_get_setting('event2month'));
         $event2year = theme_enlightlite_get_setting('event2year');
+        $event2starttime = strtotime($event2day . $event2month . $event2year . $eventstart2hour . $eventstart2minute);
+        $event2endtime = date('d/M/Y:H:i:s', $event2starttime + $event2duration);
+        $event2endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event2endtime)->format("H");
+        $event2endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event2endtime)->format("i");
         $event2image = theme_enlightlite_render_slideimg('eventimage2', 'eventimage2');
+
         $event3title = theme_enlightlite_get_setting('event3title');
         $event3desc = theme_enlightlite_get_setting('event3description');
+        $event3location = theme_enlightlite_get_setting('event3location');
         $event3status = theme_enlightlite_get_setting('event3status');
-        $event3hour = theme_enlightlite_get_setting('event3hour');
-        $event3minute = theme_enlightlite_get_setting('event3minute');
+        $eventstart3hour = theme_enlightlite_get_setting('eventstart3hour');
+        $eventstart3minute = theme_enlightlite_get_setting('eventstart3minute');
+        $event3duration = theme_enlightlite_get_setting('event3duration');
         $event3day = theme_enlightlite_get_setting('event3day');
         $event3month = monthName(theme_enlightlite_get_setting('event3month'));
         $event3year = theme_enlightlite_get_setting('event3year');
+        $event3starttime = strtotime($event3day . $event3month . $event3year . $eventstart3hour . $eventstart3minute);
+        $event3endtime = date('d/M/Y:H:i:s', $event3starttime + $event3duration);
+        $event3endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event3endtime)->format("H");
+        $event3endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event3endtime)->format("i");
         $event3image = theme_enlightlite_render_slideimg('eventimage3', 'eventimage3');
-        if ($eventsenabled == '1') { ?>
+
+        ?>
+            <input type="hidden" id="event1status" value="<?php echo $event1status ?>" />
+            <input type="hidden" id="event2status" value="<?php echo $event2status ?>" />
+            <input type="hidden" id="event3status" value="<?php echo $event3status ?>" />
+            <?php
+            $hasevents = ($event1status || $event2status || $event3status);
+            if ($eventsenabled == '1' && $hasevents) { ?>
+                <div class="event-details container --closed" id="event-details1">
+                    <div class="info">
+                        <span class="close-details" id="close-details1">X</span>
+                        <image src="<?php echo $event1image ?>" alt="event background image" />
+                        <div class="map">
+                            <?php
+                                echo '<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $event1location)) . '&z=14&output=embed"></iframe>';
+                                ?>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <h2><?php echo $event1title ?></h2>
+                        <p><span class="date"><?php echo $event1day, " ", $event1month, " ", $event1year ?></span> <span class="time"><?php echo $eventstart1hour, ':', $eventstart1minute, "-", $event1endhour, ":", $event1endminute ?></span></p>
+                        <p class="description">
+                            <?php echo $event1desc ?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="event-details container --closed" id="event-details2">
+                    <div class="info">
+                        <span class="close-details" id="close-details2">X</span>
+                        <image src="<?php echo $event2image ?>" alt="event background image" />
+                        <div class="map">
+                            <?php
+                                echo '<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $event2location)) . '&z=14&output=embed"></iframe>';
+                                ?>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <h2><?php echo $event2title ?></h2>
+                        <p><span class="date"><?php echo $event2day, " ", $event2month, " ", $event2year ?></span> <span class="time"><?php echo $eventstart2hour, ':', $eventstart2minute, "-", $event2endhour, ":", $event2endminute ?></span></p>
+                        <p class="description">
+                            <?php echo $event2desc ?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="event-details container --closed" id="event-details3">
+                    <div class="info">
+                        <span class="close-details" id="close-details3">X</span>
+                        <image src="<?php echo $event3image ?>" alt="event background image" />
+                        <div class="map">
+                            <?php
+                                echo '<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $event3location)) . '&z=14&output=embed"></iframe>';
+                                ?>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <h2><?php echo $event3title ?></h2>
+                        <p><span class="date"><?php echo $event3day, " ", $event3month, " ", $event3year ?></span> <span class="time"><?php echo $eventstart3hour, ':', $eventstart3minute, "-", $event3endhour, ":", $event3endminute ?></span></p>
+                        <p class="description">
+                            <?php echo $event3desc ?>
+                        </p>
+                    </div>
+                </div>
                 <div class="events">
                     <h2>Our Upcoming Events</h2>
                 </div>
@@ -273,29 +358,29 @@ echo $OUTPUT->doctype() ?>
                     <?php
                         if ($event1status == '1') {
                             ?>
-                        <div class="event-main" style="background-image:url(<?php echo $event1image ?>)">
-                            <p><span class="date"><?php echo $event1day, " ", $event1month, " ", $event1year ?></span> <span class="time"><?php echo $event1hour, ':', $event1minute, "-", "todo: end date" ?></span></p>
+                        <div id="event1" class="event-main" style="background-image:url(<?php echo $event1image ?>)">
+                            <p><span class="date"><?php echo $event1day, " ", $event1month, " ", $event1year ?></span> <span class="time"><?php echo $eventstart1hour, ':', $eventstart1minute, "-", $event1endhour, ":", $event1endminute ?></span></p>
                             <h3><?php echo $event1title ?></h3>
                         </div>
                     <?php
                         }
                         ?>
-                    <?php if ($event2status = '1' || $event3status = '1') {
+                    <?php if ($event2status == '1' || $event3status == '1') {
                             ?>
                         <div class="event-secondary">
                             <?php
-                                    if ($event2status == '1') {
+                                    if ($event2status == "1") {
                                         ?>
-                                <div class="event-top" style="background-image:url(<?php echo $event2image ?>)">
-                                    <p><span class="date"><?php echo $event2day, " ", $event2month, " ", $event2year ?></span> <span class="time"><?php echo $event2hour, ':', $event2minute, "-", "todo: end date" ?></span></p>
+                                <div class="event-top" id="event2" style="background-image:url(<?php echo $event2image ?>)">
+                                    <p><span class="date"><?php echo $event2day, " ", $event2month, " ", $event2year ?></span> <span class="time"><?php echo $eventstart2hour, ':', $eventstart2minute, "-",  $event2endhour, ":", $event2endminute ?></span></p>
                                     <h3><?php echo $event2title ?></h3>
                                 </div>
                             <?php } ?>
                             <?php
                                     if ($event3status == '1') {
                                         ?>
-                                <div class="event-bot" style="background-image:url(<?php echo $event3image ?>)">
-                                    <p><span class="date"><?php echo $event3day, " ", $event3month, " ", $event3year ?></span> <span class="time"><?php echo $event3hour, ':', $event3minute, "-", "todo: end date" ?></span></p>
+                                <div class="event-bot" id="event3" style="background-image:url(<?php echo $event3image ?>)">
+                                    <p><span class="date"><?php echo $event3day, " ", $event3month, " ", $event3year ?></span> <span class="time"><?php echo $eventstart3hour, ':', $eventstart3minute, "-",  $event3endhour, ":", $event3endminute ?></span></p>
                                     <h3><?php echo $event3title ?></h3>
                                 </div>
                             <?php } ?>
@@ -338,7 +423,114 @@ echo $OUTPUT->doctype() ?>
     <?php
     require_once(dirname(__FILE__) . '/includes/footer.php');
     ?>
+    <script>
+        let event1status = document.querySelector("#event1status").value;
+        let event2status = document.querySelector("#event2status").value;
+        let event3status = document.querySelector("#event3status").value;
 
+
+        let event1 = document.querySelector("#event1");
+        let eventModal1 = document.querySelector("#event-details1");
+        let closeModal1 = document.querySelector("#close-details1");
+
+
+        let event2 = document.querySelector("#event2");
+        let eventModal2 = document.querySelector("#event-details2");
+        let closeModal2 = document.querySelector("#close-details2");
+
+
+        let event3 = document.querySelector("#event3");
+        let eventModal3 = document.querySelector("#event-details3");
+        let closeModal3 = document.querySelector("#close-details3");
+
+
+        if (event1status == 1) {
+
+            event1.addEventListener("click", () => {
+                console.log("open");
+                eventModal1.classList.remove("--closed");
+                eventModal1.classList.add("--opened");
+                if (event2status == 1) {
+                    eventModal2.classList.remove("--opened");
+                }
+                if (event3status == 1) {
+                    eventModal3.classList.remove("--opened");
+                }
+
+            });
+            closeModal1.addEventListener("click", () => {
+                console.log("close");
+                eventModal1.classList.remove("--opened");
+                eventModal1.classList.add("--closed");
+                if (event2status == 1) {
+                    eventModal2.classList.remove("--opened");
+                    eventModal2.classList.add("--closed");
+                }
+                if (event3status == 1) {
+                    eventModal3.classList.remove("--opened");
+                    eventModal3.classList.add("--closed");
+                }
+
+            });
+        }
+        if (event2status == 1) {
+            event2.addEventListener("click", () => {
+                console.log("open");
+                eventModal2.classList.remove("--closed");
+                eventModal2.classList.add("--opened");
+                if (event1status == 1) {
+                    eventModal1.classList.remove("--opened");
+                }
+                if (event3status == 1) {
+                    eventModal3.classList.remove("--opened");
+                }
+
+            });
+            closeModal2.addEventListener("click", () => {
+                console.log("close");
+                if (event1status == 1) {
+                    eventModal1.classList.remove("--opened");
+                    eventModal1.classList.add("--closed");
+                }
+                eventModal2.classList.remove("--opened");
+                eventModal2.classList.add("--closed");
+                if (event3status == 1) {
+                    eventModal3.classList.remove("--opened");
+                    eventModal3.classList.add("--closed");
+                }
+
+            });
+        }
+        if (event3status == 1) {
+
+            event3.addEventListener("click", () => {
+                console.log("open");
+                eventModal3.classList.remove("--closed");
+                eventModal3.classList.add("--opened");
+                if (event2status == 1) {
+                    eventModal2.classList.remove("--opened");
+                }
+                if (event1status == 1) {
+                    eventModal1.classList.remove("--opened");
+                }
+
+            });
+            closeModal3.addEventListener("click", () => {
+                console.log("close");
+                if (event1status == 1) {
+                    eventModal1.classList.remove("--opened");
+                    eventModal1.classList.add("--closed");
+                }
+                if (event2status == 1) {
+                    eventModal2.classList.remove("--opened");
+                    eventModal2.classList.add("--closed");
+                }
+
+                eventModal3.classList.remove("--opened");
+                eventModal3.classList.add("--closed");
+            });
+        };
+    </script>
     <script>
         require(['jquery'], function($) {
 
