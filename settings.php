@@ -543,6 +543,13 @@ if ($ADMIN->fulltree) {
         $setting = new admin_setting_configtextarea($name, $title, $description, PARAM_TEXT);
         $temp->add($setting);
 
+        $name = 'theme_enlightlite/event' . $i . 'location';
+        $title = "Event" . $i . "location";
+        $default = "Default location " . $i;
+        $description = "Enter your event location.";
+        $setting = new admin_setting_configtext($name, $title,  $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+
         $name = 'theme_enlightlite/eventimage' . $i;
         $title = 'Event background ' . $i . ' image';
         $description = 'Event background ' . $i . ' image';
@@ -550,9 +557,9 @@ if ($ADMIN->fulltree) {
         $setting->set_updatedcallback('theme_reset_all_caches');
         $temp->add($setting);
 
-        $name = 'theme_enlightlite/event' . $i . 'hour';
-        $title = 'Event ' . $i . ' hour';
-        $description = 'Event ' . $i . ' hour';
+        $name = 'theme_enlightlite/eventstart' . $i . 'hour';
+        $title = 'Event starting' . $i . ' hour';
+        $description = 'Event starting' . $i . ' hour';
         $default = '00';
         $choices = array(
             '00' => '00',
@@ -583,7 +590,7 @@ if ($ADMIN->fulltree) {
         $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
         $temp->add($setting);
 
-        $name = 'theme_enlightlite/event' . $i . 'minute';
+        $name = 'theme_enlightlite/eventstart' . $i . 'minute';
         $title = 'Event ' . $i . ' minute';
         $description = 'Event ' . $i . ' minute';
         $default = '00';
@@ -650,6 +657,14 @@ if ($ADMIN->fulltree) {
             '59' => '59'
         );
         $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/event' . $i . 'duration';
+        $title = 'Event ' . $i . ' duration';
+        $description = 'Event ' . $i . ' duration';
+        $default = 3600;
+        $defaultunit = 3600; // 1 hour
+        $setting = new admin_setting_configduration($name, $title, $description, $default, $defaultunit);
         $temp->add($setting);
 
         $name = 'theme_enlightlite/event' . $i . 'month';
