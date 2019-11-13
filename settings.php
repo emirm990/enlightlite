@@ -877,7 +877,42 @@ if ($ADMIN->fulltree) {
 
     $settings->add($temp);
     /*Events End*/
+    /* tabs and pills start */
 
+    $temp = new admin_settingpage('theme_enlightlite_tabs', "Tabs Information pages");
+
+    /* tab 1 */
+    $name = 'theme_enlightlite_tabstab1';
+    $heading = "Tab 1";
+    $information = '';
+    $setting = new admin_setting_heading($name, $heading, $information);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/tabsmaintitle';
+    $title = 'Tabs main title';
+    $description = "Tabs main title";
+    $default = 'Main title';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $temp->add($setting);
+
+    for ($i = 1; $i <= 4; $i++) {
+        $name = 'theme_enlightlite/tab' . $i . 'title';
+        $title = 'Tab ' . $i . ' title';
+        $description = 'Title for tab ' . $i;
+        $default = 'Tab ' . $i . ' Title';
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/tab' . $i . 'content';
+        $title = "Tab " . $i;
+        $description = "HTML Editor for tab " . $i;
+        $default = "<h2>Tab" . $i . "heading</h2><p>Tab " . $i . " content</p>";
+        $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+        $temp->add($setting);
+    }
+
+
+    $settings->add($temp);
     /* Footer Settings start */
     $temp = new admin_settingpage('theme_enlightlite_footer', get_string('footerheading', 'theme_enlightlite'));
 
