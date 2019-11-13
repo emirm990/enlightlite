@@ -417,13 +417,98 @@ echo $OUTPUT->doctype() ?>
     $theme = theme_config::load('enlightlite');
     ?>
     <!--E.O.Testimonials-->
+    <?php
+    $tab1title = theme_enlightlite_get_setting('tab1title');
+    $tab1content = theme_enlightlite_get_setting('tab1content', "format_html");
+    $tab2title = theme_enlightlite_get_setting('tab2title');
+    $tab2content = theme_enlightlite_get_setting('tab2content', "format_html");
+    $tab3title = theme_enlightlite_get_setting('tab3title');
+    $tab3content = theme_enlightlite_get_setting('tab3content', "format_html");
+    $tab4title = theme_enlightlite_get_setting('tab4title');
+    $tab4content = theme_enlightlite_get_setting('tab4content', "format_html");
 
+    $tabsmaintitle = theme_enlightlite_get_setting('tabsmaintitle');
 
+    ?>
+    <div class="tabs-background">
+        <?php if (!empty($tabsmaintitle)) {
+            echo '<h2 class="tabs-main-title">', $tabsmaintitle, '</h2>';
+        } ?>
+        <div class="container tabs-container">
+            <div class="tabs-headers">
+                <?php if (!empty($tab1title)) {
+                    echo '<h3 class="tab-title active-tab">', $tab1title, '</h3>';
+                }
+                ?>
+                <?php if (!empty($tab2title)) {
+                    echo '<h3 class="tab-title">', $tab2title, '</h3>';
+                } ?>
+                <?php if (!empty($tab3title)) {
+                    echo '<h3 class="tab-title">', $tab3title, '</h3>';
+                }
+                ?>
+                <?php if (!empty($tab4title)) {
+                    echo '<h3 class="tab-title">', $tab4title, '</h3>';
+                }
+                ?>
+            </div>
+            <?php if (!empty($tab1title)) {
+                echo '<div class="tabs-content active-content">',
+                    $tab1content,
+                    '</div>';
+            }
+            ?>
+            <?php if (!empty($tab2title)) {
+                echo '<div class="tabs-content">',
+                    $tab2content,
+                    '</div>';
+            }
+            ?>
+            <?php if (!empty($tab3title)) {
+                echo '<div class="tabs-content">',
+                    $tab3content,
+                    '</div>';
+            }
+            ?>
+            <?php if (!empty($tab4title)) {
+                echo '<div class="tabs-content">',
+                    $tab4content,
+                    '</div>';
+            }
+            ?>
+        </div>
 
+    </div>
+    <?php
+    $blogs = theme_enlightlite_get_recent_blogs();
+    print_object($blogs);
+    /*print_object($blogs[2]->summary);
+    print_object($blogs[2]->subject);
+    print_object($blogs[2]->firstname);
+    print_object($blogs[2]->lastname);
+    print_object(date('d/M/Y', $blogs[2]->created));*/
+    ?>
     <?php
     require_once(dirname(__FILE__) . '/includes/footer.php');
     ?>
     <script>
+        let tabTitles = document.querySelectorAll(".tab-title");
+        let tabContents = document.querySelectorAll(".tabs-content");
+
+        for (let i = 0; i < tabTitles.length; i++) {
+            tabTitles[i].addEventListener("click", function(e) {
+                for (let j = 0; j < tabTitles.length; j++) {
+                    if (e.target != tabTitles[j]) {
+                        tabContents[j].classList.remove("active-content");
+                        tabTitles[j].classList.remove("active-tab");
+                    } else {
+                        tabContents[j].classList.add("active-content");
+                    }
+                }
+                e.target.classList.add("active-tab");
+            })
+        }
+        /*events content*/
         let event1status = document.querySelector("#event1status").value;
         let event2status = document.querySelector("#event2status").value;
         let event3status = document.querySelector("#event3status").value;
@@ -530,6 +615,8 @@ echo $OUTPUT->doctype() ?>
                 eventModal3.classList.add("--closed");
             });
         };
+
+        /* events end */
     </script>
     <script>
         require(['jquery'], function($) {
