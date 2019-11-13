@@ -1,4 +1,5 @@
 $orange: #ff9900;
+$grey: #ecf2ff;
 body {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -218,4 +219,59 @@ body {
 		background-color: rgba(17, 119, 209, 0.8);
 		border-color: rgba(17, 119, 209, 0.8);
 	}
+}
+.tabs-headers {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+	h3 {
+		flex-basis: 20%;
+		text-align: center;
+		padding: 20px 0;
+		margin: 0 15px;
+		border-radius: 6px;
+		background-color: $grey;
+		cursor: pointer;
+		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+		&:hover {
+			border-radius: 10px;
+		}
+	}
+}
+.active-tab {
+	background-color: $orange !important;
+	color: white;
+}
+.tabs-container {
+	background-color: white;
+	padding: 50px 120px;
+}
+.tabs-main-title {
+	text-align: center;
+	color: white;
+	margin: 0 auto;
+	padding-left: 100px;
+	padding-right: 100px;
+	margin-bottom: 100px;
+	width: 30%;
+	font-weight: bold;
+}
+.tabs-content {
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height 0.5s ease-in-out, padding-bottom 0.2s ease-in-out;
+	img {
+		box-shadow: 15px 15px 0px 0px #4681ff;
+		margin-right: 30px;
+	}
+}
+.active-content {
+	max-height: 1000px;
+	padding-bottom: 20px;
+}
+.tabs-background {
+	background-color: #1a1e4b;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	margin-bottom: 100px;
 }
