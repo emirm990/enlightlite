@@ -914,3 +914,25 @@ function theme_enlightlite_footer_address($check = "")
     }
     return $value;
 }
+
+function theme_enlightlite_get_recent_blogs()
+{
+    $admins = get_admins();
+    $adminsID = [];
+    foreach ($admins as $admin) {
+        array_push($adminsID, $admin->id);
+    };
+
+    $sql = "SELECT p.id AS post_id,u.id AS user_id,summary,subject,created, firstname, lastname FROM mdl_post AS p LEFT JOIN mdl_user AS u ON p.userid = u.id WHERE p.module = 'blog' ORDER BY p.created DESC";
+    global $DB;
+    $blogs = $DB->get_records_sql($sql);
+    $blogslist = [];
+    foreach ($blogs as $blog) {
+        foreach ($adminsID as $id) {
+            if ($blog->user_id == $id) {
+                array_push($blogslist, $blog);
+            }
+        }
+    }
+    return $blogslist;
+}
