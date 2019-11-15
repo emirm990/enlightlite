@@ -20,7 +20,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$(function(){
+$(function () {
 
     var img = $("nav#header").find('.avatar').find('img[src$="/u/f2"]');
     var src = img.attr('src');
@@ -31,7 +31,7 @@ $(function(){
     note = $("header#header").find('#nav-notification-popover-container .nav-link').find("img[src$='i/notifications']");
     notesrc = note.attr('src');
     note.attr('src', notesrc + "_white");
-    $( "table" ).wrap( function() {
+    $("table").wrap(function () {
         var ctab_obj = $(this);
         if (ctab_obj.parent('div').hasClass('no-overflow')) {
 
@@ -40,7 +40,7 @@ $(function(){
         }
     });
     par = $('#page');
-    par.find('h2').each(function(){
+    par.find('h2').each(function () {
         cont = $(this).html();
         con = cont.split(' ');
     })
@@ -50,9 +50,9 @@ $(function(){
         $("#header .navbar-nav").find('button').addClass('is-active');
     }
     /*------ Event for change the drawer navbar style  ------*/
-    $("#header .navbar-nav button").click(function(){
+    $("#header .navbar-nav button").click(function () {
         $this = $(this);
-        setTimeout(function() {
+        setTimeout(function () {
             if ($this.attr('aria-expanded') === "true") {
                 $("#header .navbar-nav").find('button').addClass('is-active');
             } else {
@@ -71,27 +71,27 @@ $(function(){
     // Enable/Disable the popular course id field in admin settings page on PAGE LOADING.
     $val = $("#id_s_theme_enlightlite_popularCourse_type").val();
     if ($val == 1) {
-        $("#admin-popularCourse_id").find('input[type=text]').attr('disabled','disabled');
+        $("#admin-popularCourse_id").find('input[type=text]').attr('disabled', 'disabled');
     }
 
     // Enable/ Disable popular course id on the values based on popular course type.
-    $("#id_s_theme_enlightlite_popularCourse_type").on('change', function() {
+    $("#id_s_theme_enlightlite_popularCourse_type").on('change', function () {
 
         $this = $(this);
         val = $this.val();
         if (val == '1') {
-            $("#admin-popularCourse_id").find('input[type=text]').attr('disabled','disabled');
+            $("#admin-popularCourse_id").find('input[type=text]').attr('disabled', 'disabled');
         } else {
             $("#admin-popularCourse_id").find('input[type=text]').removeAttr('disabled');
         }
     });
 
     /*----- Create the accordion for the custom blocks or tabs in settings page */
-    var toggelSection = ['#theme_enlightlite_general', '#theme_enlightlite_slideshow', '#theme_enlightlite_marketingspot', '#theme_enlightlite_footer'];
-    $.each(toggelSection, function(key, value) {
+    var toggelSection = ['#theme_enlightlite_general', '#theme_enlightlite_slideshow', '#theme_enlightlite_marketingspot', '#theme_enlightlite_footer', '#theme_enlightlite_events', '#theme_enlightlite_tabs', '#theme_enlightlite_blogimages'];
+    $.each(toggelSection, function (key, value) {
         h3 = $(value).find('h3.main');
         block = value.split("_")[2]; // Get the settings heading name from the given id's.
-        h3.each( function(key) {
+        h3.each(function (key) {
             $this = $(this);
             var childid = block + "_toggle_" + key;
             hidden = "true";
@@ -107,7 +107,7 @@ $(function(){
 
     /******** Event for accordion clicked  *********/
 
-    $(".enlightlite-toggle-head").click(function(){
+    $(".enlightlite-toggle-head").click(function () {
         $this = $(this);
         parentid = $this.parent('fieldset').parent('div.tab-pane').attr('id');
         if (parentid.length != "") {
@@ -138,7 +138,7 @@ $(function(){
         } else {
             parent = $(".tab-pane.active[aria-expanded=true]");
         }
-        parent.find('.enlightlite-toggle-head').each(function() {
+        parent.find('.enlightlite-toggle-head').each(function () {
             $this = $(this);
             childid = $(this).attr('id');
             dataHidden = parent.find('#child_' + childid).attr('data-hidden');
@@ -156,19 +156,19 @@ $(function(){
     if ($('body').hasClass('dir-rtl')) {
         var w = $(".header-main #sgkk").width();
         var win = $(window).width();
-        if ( win >= 980) {
+        if (win >= 980) {
             var ul_w = $(".header-main #site-user-menu ul").width();
-            var le = ( w - ul_w );
-            $('#cr_menu').css({"width": w + 'px' , "right": '-' + le + 'px' });
+            var le = (w - ul_w);
+            $('#cr_menu').css({ "width": w + 'px', "right": '-' + le + 'px' });
         }
 
-        $(window).resize(function(){
+        $(window).resize(function () {
             var w = $(".header-main #sgkk").width();
             var win = $(window).width();
-            if (win >= 980)  {
+            if (win >= 980) {
                 var ul_w = $(".header-main #site-user-menu ul").width();
-                var le = ( w - ul_w );
-                $('#cr_menu').css({"width" : w + 'px' , "right": '-' + le + 'px' });
+                var le = (w - ul_w);
+                $('#cr_menu').css({ "width": w + 'px', "right": '-' + le + 'px' });
             }
         });
     } else { // RTL Check And RTL BASED Function;.
@@ -176,27 +176,27 @@ $(function(){
         var win = $(window).width();
         if (win >= 980) {
             var ul_w = $(".header-main #site-user-menu ul").width();
-            var le = ( w - ul_w );
-            $('#cr_menu').css({"width" : w + 'px', "left": '-' + le + 'px' });
+            var le = (w - ul_w);
+            $('#cr_menu').css({ "width": w + 'px', "left": '-' + le + 'px' });
         }
 
-        $(window).resize(function(){
+        $(window).resize(function () {
             var w = $(".header-main #sgkk").width();
             var win = $(window).width();
             if (win >= 980) {
                 var ul_w = $(".header-main #site-user-menu ul").width();
-                var le = ( w - ul_w );
-                $('#cr_menu').css({"width" : w + 'px', "left" : '-' + le + 'px' });
+                var le = (w - ul_w);
+                $('#cr_menu').css({ "width": w + 'px', "left": '-' + le + 'px' });
             }
         });
     }
 
-    $("#cr_link").mouseenter(function() {
+    $("#cr_link").mouseenter(function () {
         $("#cr_link").addClass("active");
         $('#cr_menu').show();
     });
 
-    $("#cr_link").mouseleave(function() {
+    $("#cr_link").mouseleave(function () {
         $("#cr_link").removeClass("active");
         $('#cr_menu').hide();
     });
