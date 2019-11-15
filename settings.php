@@ -881,9 +881,8 @@ if ($ADMIN->fulltree) {
 
     $temp = new admin_settingpage('theme_enlightlite_tabs', "Tabs Information pages");
 
-    /* tab 1 */
-    $name = 'theme_enlightlite_tabstab1';
-    $heading = "Tab 1";
+    $name = 'theme_enlightlite_tabsheading';
+    $heading = "Tabs heading";
     $information = '';
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
@@ -896,6 +895,12 @@ if ($ADMIN->fulltree) {
     $temp->add($setting);
 
     for ($i = 1; $i <= 4; $i++) {
+        $name = 'theme_enlightlite_tabsheading' . $i;
+        $heading = "Tab " . $i;
+        $information = '';
+        $setting = new admin_setting_heading($name, $heading, $information);
+        $temp->add($setting);
+
         $name = 'theme_enlightlite/tab' . $i . 'title';
         $title = 'Tab ' . $i . ' title';
         $description = 'Title for tab ' . $i;
@@ -913,6 +918,29 @@ if ($ADMIN->fulltree) {
 
 
     $settings->add($temp);
+
+    /* Footer Settings start */
+    $temp = new admin_settingpage('theme_enlightlite_blogimages', "Frontpage blog images");
+
+
+    for ($i = 1; $i <= 3; $i++) {
+        $name = 'theme_enlightlite_blogimagesheading' . $i;
+        $heading = "Blog " . $i . " image";
+        $information = '';
+        $setting = new admin_setting_heading($name, $heading, $information);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/blogimage' . $i;
+        $title = "Blog " . $i . " image";
+        $description = "Upload image to be shown on the frontpage blog";
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'blogimage' . $i);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+    };
+
+
+    $settings->add($temp);
+
     /* Footer Settings start */
     $temp = new admin_settingpage('theme_enlightlite_footer', get_string('footerheading', 'theme_enlightlite'));
 
@@ -999,12 +1027,12 @@ if ($ADMIN->fulltree) {
     $temp->add($setting);
 
     // Footer block 3 link.
-    $name = 'theme_enlightlite/footerblink3';
+    /*$name = 'theme_enlightlite/footerblink3';
     $title = get_string('links', 'theme_enlightlite');
     $description = get_string('footerblink_desc', 'theme_enlightlite', array('blockno' => '3'));
     $default = get_string('footerblink3default', 'theme_enlightlite');
     $setting = new admin_setting_configtextarea($name, $title, $description, $default);
-    $temp->add($setting);
+    $temp->add($setting);*/
     /* Footer Block3 */
 
     /* Footer Block4 */
