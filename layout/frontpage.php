@@ -481,17 +481,37 @@ echo $OUTPUT->doctype() ?>
     </div>
     <?php
     $blogs = theme_enlightlite_get_recent_blogs();
-    print_object($blogs);
+    //print_object($blogs);
+    //$blogimage0 = theme_enlightlite_render_slideimg('blogimage1', 'blogimage1');
+    //$blogimage1 = theme_enlightlite_render_slideimg('blogimage2', 'blogimage2');
+    // $blogimage1 = theme_enlightlite_render_slideimg('blogimage3', 'blogimage3');
+    $blogimages = array(theme_enlightlite_render_slideimg('blogimage1', 'blogimage1'), theme_enlightlite_render_slideimg('blogimage2', 'blogimage2'), theme_enlightlite_render_slideimg('blogimage3', 'blogimage3'));
     /*print_object($blogs[2]->summary);
     print_object($blogs[2]->subject);
     print_object($blogs[2]->firstname);
     print_object($blogs[2]->lastname);
     print_object(date('d/M/Y', $blogs[2]->created));*/
     ?>
+    <?php if (!empty($blogs)) {
+        echo '<div class="container">';
+        echo '<h3 class="blogs-section-title">Read our Latest news and blogs</h3>
+        <div class="blogs-container">';
+
+        foreach ($blogs as $blogKey => $blogVal) {
+            echo '<div class="blog-item">';
+            echo '<img src=', $blogimages[$blogKey], '>';
+            echo ' <div class="padding name-date"><p><span class="name">', $blogVal->firstname, '</span><span class="name">', $blogVal->lastname, '</p><p></span><span class="date">', date("d M Y", $blogVal->created), '</span></p></div>';
+            echo '<h3 class="blog-title padding">', $blogVal->subject, '</h3>';
+            echo '<div class="blog-content padding">', $blogVal->summary, '</div>';
+            echo '<a class="view-more padding" href=', $CFG->wwwroot, '/blog/index.php?entryid=', $blogVal->post_id, ' ', 'target="_blank" rel="noopener">view more</a>
+        </div>';
+        }
+        echo '</div>';
+        echo '</div>';
+    } ?>
     <?php
     require_once(dirname(__FILE__) . '/includes/footer.php');
-    ?>
-    <script>
+    ?> <script>
         let tabTitles = document.querySelectorAll(".tab-title");
         let tabContents = document.querySelectorAll(".tabs-content");
 
@@ -507,30 +527,20 @@ echo $OUTPUT->doctype() ?>
                 }
                 e.target.classList.add("active-tab");
             })
-        }
-        /*events content*/
+        } /*events content*/
         let event1status = document.querySelector("#event1status").value;
         let event2status = document.querySelector("#event2status").value;
         let event3status = document.querySelector("#event3status").value;
-
-
         let event1 = document.querySelector("#event1");
         let eventModal1 = document.querySelector("#event-details1");
         let closeModal1 = document.querySelector("#close-details1");
-
-
         let event2 = document.querySelector("#event2");
         let eventModal2 = document.querySelector("#event-details2");
         let closeModal2 = document.querySelector("#close-details2");
-
-
         let event3 = document.querySelector("#event3");
         let eventModal3 = document.querySelector("#event-details3");
         let closeModal3 = document.querySelector("#close-details3");
-
-
         if (event1status == 1) {
-
             event1.addEventListener("click", () => {
                 console.log("open");
                 eventModal1.classList.remove("--closed");
