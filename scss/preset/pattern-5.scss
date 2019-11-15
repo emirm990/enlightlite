@@ -238,6 +238,16 @@ body {
 		}
 	}
 }
+span[data-fieldtype="submit"] .btn-primary {
+	background-color: #1177d1 !important;
+	border-color: #1177d1 !important;
+	transition: all 0.2s ease-in-out;
+	color: white;
+	&:hover {
+		background-color: rgba(17, 119, 209, 0.8) !important;
+		border-color: rgba(17, 119, 209, 0.8) !important;
+	}
+}
 .active-tab {
 	background-color: $orange !important;
 	color: white;
