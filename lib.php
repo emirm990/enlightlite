@@ -404,7 +404,18 @@ function theme_enlightlite_get_logo_url($type = 'header')
     $logo = empty($logo) ? $OUTPUT->image_url('home/logo', 'theme') : $logo;
     return $logo;
 }
+function theme_enlightlite_get_blogimage_url($imagename, $type = 'header')
+{
+    global $OUTPUT;
+    static $theme;
+    if (empty($theme)) {
+        $theme = theme_config::load('enlightlite');
+    }
 
+    $image = $theme->setting_file_url($imagename, $imagename);
+    $image = empty($image) ? $OUTPUT->image_url('home/' . $imagename, 'theme') : $image;
+    return $image;
+}
 /**
  * Renderer the slider images.
  * @param type|integer $p
@@ -923,7 +934,7 @@ function theme_enlightlite_get_recent_blogs()
         array_push($adminsID, $admin->id);
     };
 
-    $sql = "SELECT p.id AS post_id,u.id AS user_id,summary,subject,created, firstname, lastname FROM mdl_post AS p LEFT JOIN mdl_user AS u ON p.userid = u.id WHERE p.module = 'blog' ORDER BY p.created DESC";
+    $sql = "SELECT p.id AS post_id,u.id AS user_id,summary,subject,created, firstname, lastname FROM mdl_post AS p LEFT JOIN mdl_user AS u ON p.userid = u.id WHERE p.module = 'blog' ORDER BY p.created DESC LIMIT 3";
     global $DB;
     $blogs = $DB->get_records_sql($sql);
     $blogslist = [];
