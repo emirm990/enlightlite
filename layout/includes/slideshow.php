@@ -299,6 +299,7 @@ if ($general['slideshowStatus'] != 0) {
                         mobileNavHover: false,
                         imagePath: imagePath,
                         overlayer: false,
+                        fx: 'scrollHorz',
                         loaderOpacity: 0.7,
                         rows: 4,
                         slicedCols: 7,
@@ -326,6 +327,7 @@ if ($general['slideshowStatus'] != 0) {
                         $this = $('.camera_target_content .cameracurrent')
                         $content = $this.find('.heading-content [data-animation ^= "animated"]');
                         index = 0;
+                        console.log($this.data('animation'));
                         if ($content != "undefined" && $content.length != "") {
                             $content.css({
                                 'opacity': 0
@@ -350,9 +352,11 @@ if ($general['slideshowStatus'] != 0) {
 
                     function doAnimations(elems) {
                         var animEndEv = 'webkitAnimationEnd animationend';
+
                         elems.each(function() {
                             var $this = $(this),
                                 $animationType = $this.data('animation');
+
                             $this.addClass($animationType).one(animEndEv, function() {
                                 $this.removeClass($animationType);
                             });
