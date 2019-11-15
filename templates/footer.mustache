@@ -24,9 +24,7 @@
 
 <footer id="site-footer">
     {{# footermain }}
-    {{#courses}}
-        <a href="{{url}}/course/view.php?id={{id}}">{{fullname}}</a>
-    {{/courses}}
+    
     <div class="footer-main">
        
         <div class="bgtrans-overlay"></div><!--Overlay transparent bg layer-->
@@ -58,7 +56,9 @@
                         <h6>{{{ fb3title }}}</h6>
                         <div class="footer-links">
                             <ul>
-                                {{{ footerblink3 }}}
+                                {{#courses}}
+                            <li ><a class="recent-course" href="{{url}}/course/view.php?id={{id}}">{{fullname}}</a></li>
+    {{/courses}}
                             </ul>
                         </div>
                     </div>
