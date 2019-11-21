@@ -83,76 +83,70 @@ echo $OUTPUT->doctype() ?>
             })
         </script>
         <?php
-        $mspot2status = theme_enlightlite_get_setting('marketingSpot2_status');
-        $msp2title = theme_enlightlite_get_setting('mspot2title', 'format_html');
-        $msp2title = theme_enlightlite_lang($msp2title);
-        $msp2desc = theme_enlightlite_get_setting('mspot2desc', 'format_html');
-        $msp2desc = theme_enlightlite_lang($msp2desc);
-        $msp2url = theme_enlightlite_get_setting('mspot2url');
-        $msp2urltxt = theme_enlightlite_get_setting('mspot2urltext', 'format_html');
-        $msp2urltxt = theme_enlightlite_lang($msp2urltxt);
-        $mspot2urltarget = theme_enlightlite_get_setting('mspot2urltarget');
+        $mspot1status = theme_enlightlite_get_setting('marketingSpot1_status');
+        $msp1title = theme_enlightlite_get_setting('mspot1title', 'format_html');
+        $msp1desc = theme_enlightlite_get_setting('mspot1desc');
+        $msp1url = theme_enlightlite_get_setting('mspot1url');
+        $msp1urltxt = theme_enlightlite_get_setting('mspot1urltext', 'format_html');
+        $mspot1urltarget = theme_enlightlite_get_setting('mspot1urltarget');
 
-        $mspot2titler1 = theme_enlightlite_get_setting('mspot2titler1', 'format_html');
-        $mspot2titler1 = theme_enlightlite_lang($mspot2titler1);
-        $mspot2titler2 = theme_enlightlite_get_setting('mspot2titler2', 'format_html');
-        $mspot2titler2 = theme_enlightlite_lang($mspot2titler2);
-        $mspot2titler3 = theme_enlightlite_get_setting('mspot2titler3', 'format_html');
-        $mspot2titler3 = theme_enlightlite_lang($mspot2titler3);
-        $mspot2titler4 = theme_enlightlite_get_setting('mspot2titler4', 'format_html');
-        $mspot2titler5 = theme_enlightlite_lang($mspot2titler4);
+        $mspot1titler1 = theme_enlightlite_get_setting('mspot1titler1', 'format_html');
+        $mspot1titler2 = theme_enlightlite_get_setting('mspot1titler2', 'format_html');
+        $mspot1titler3 = theme_enlightlite_get_setting('mspot1titler3', 'format_html');
+        $mspot1titler4 = theme_enlightlite_get_setting('mspot1titler4', 'format_html');
 
-        $msp2descr1 = theme_enlightlite_get_setting('mspot2descr1', 'format_html');
-        $msp2descr1 = theme_enlightlite_lang($msp2descr1);
-        $msp2descr2 = theme_enlightlite_get_setting('mspot2descr2', 'format_html');
-        $msp2descr2 = theme_enlightlite_lang($msp2descr2);
-        $msp2descr3 = theme_enlightlite_get_setting('mspot2descr3', 'format_html');
-        $msp2descr3 = theme_enlightlite_lang($msp2descr3);
-        $msp2descr4 = theme_enlightlite_get_setting('mspot2descr3', 'format_html');
-        $msp2descr4 = theme_enlightlite_lang($msp2descr4);
+        $msp1descr1 = theme_enlightlite_get_setting('mspot1descr1', 'format_html');
+        $msp1descr2 = theme_enlightlite_get_setting('mspot1descr2', 'format_html');
+        $msp1descr3 = theme_enlightlite_get_setting('mspot1descr3', 'format_html');
+        $msp1descr4 = theme_enlightlite_get_setting('mspot1descr3', 'format_html');
 
         $rightimage1 = theme_enlightlite_render_slideimg('rightimage1', 'rightimage1');
         $rightimage2 = theme_enlightlite_render_slideimg('rightimage2', 'rightimage2');
         $rightimage3 = theme_enlightlite_render_slideimg('rightimage3', 'rightimage3');
         $rightimage4 = theme_enlightlite_render_slideimg('rightimage4', 'rightimage4');
-        $target = ($mspot2urltarget == '1') ? "_blank" : "_self";
+        $target = ($mspot1urltarget == '1') ? "_blank" : "_self";
         ?>
         <?php
-        if ($mspot2status == '1') {
+        if ($mspot1status == '1') {
             ?>
             <div class="jumbo-viewall">
                 <div class="container about-us">
                     <div class="inner-wrap">
                         <div class="desc-wrap">
-                            <h2><?php echo $msp2title; ?></h2>
-                            <p><?php echo $msp2desc; ?></p>
+                            <h2><?php echo $msp1title; ?></h2>
+                            <p><?php echo $msp1desc; ?></p>
                         </div>
-                        <a href='<?php echo $msp2url; ?>' target="<?php echo $target; ?>" class="btn-jumbo"><?php echo $msp2urltxt; ?></a>
+                        <a href='<?php echo $msp1url; ?>' target="<?php echo $target; ?>" class="btn-jumbo"><?php echo $msp1urltxt; ?></a>
                     </div>
                     <div class="inner-wrap-right">
-                        <div class="item">
-                            <img src="<?php echo $rightimage1 ?>" alt="">
-                            <h3><?php echo $mspot2titler1; ?></h3>
-                            <p><?php echo $msp2descr1; ?></p>
-                        </div>
-                        <div class="item">
-                            <img src="<?php echo $rightimage2 ?>" alt="">
-                            <h3><?php echo $mspot2titler2; ?></h3>
-                            <p><?php echo $msp2descr2; ?></p>
-
-                        </div>
-                        <div class="item">
-                            <img src="<?php echo $rightimage3 ?>" alt="">
-                            <h3><?php echo $mspot2titler3; ?></h3>
-                            <p><?php echo $msp2descr3; ?></p>
-
-                        </div>
-                        <div class="item">
-                            <img src="<?php echo $rightimage4 ?>" alt="">
-                            <h3><?php echo $mspot2titler4; ?></h3>
-                            <p><?php echo $msp2descr4; ?></p>
-
-                        </div>
+                        <?php if (!empty($mspot1titler1)) {
+                                echo '<div class="item">';
+                                echo '<img src="' . $rightimage1 . '">';
+                                echo '<h3>', $mspot1titler1, '</h3>';
+                                echo '<p>', $msp1descr1, '</p>';
+                                echo '</div>';
+                            } ?>
+                        <?php if (!empty($mspot1titler2)) {
+                                echo '<div class="item">';
+                                echo '<img src="' . $rightimage2 . '">';
+                                echo '<h3>', $mspot1titler2, '</h3>';
+                                echo '<p>', $msp1descr2, '</p>';
+                                echo '</div>';
+                            } ?>
+                        <?php if (!empty($mspot1titler3)) {
+                                echo '<div class="item">';
+                                echo '<img src="' . $rightimage3 . '">';
+                                echo '<h3>', $mspot1titler3, '</h3>';
+                                echo '<p>', $msp1descr3, '</p>';
+                                echo '</div>';
+                            } ?>
+                        <?php if (!empty($mspot1titler4)) {
+                                echo '<div class="item">';
+                                echo '<img src="' . $rightimage4 . '">';
+                                echo '<h3>', $mspot1titler4, '</h3>';
+                                echo '<p>', $msp1descr4, '</p>';
+                                echo '</div>';
+                            } ?>
                     </div>
                 </div>
             </div>
@@ -165,7 +159,7 @@ echo $OUTPUT->doctype() ?>
 
         // $PAGE->requires->js('/theme/enlightlite/javascript/slick.js');.
 
-        $status = theme_enlightlite_get_setting('marketingSpot1_status');
+        $status = theme_enlightlite_get_setting('marketingSpot2_status');
         if ($status == "1") {
             echo theme_enlightlite_marketingspot1();
         }
@@ -174,7 +168,7 @@ echo $OUTPUT->doctype() ?>
 
         <!-- Marketing Spot 1 -->
         <?php
-        $ms1status = theme_enlightlite_get_setting('marketingSpot1_status');
+        $ms1status = theme_enlightlite_get_setting('marketingSpot2_status');
         if ($ms1status == 1) {
             ?>
             <div class="frontpage-siteinfo hidden">
@@ -255,7 +249,9 @@ echo $OUTPUT->doctype() ?>
         $event1endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event1endtime)->format("H");
         $event1endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event1endtime)->format("i");
         $event1image = theme_enlightlite_render_slideimg('eventimage1', 'eventimage1');
-
+        if (empty($event1image)) {
+            $event1image = $OUTPUT->image_url('/event/default', 'theme');
+        }
         $event2title = theme_enlightlite_get_setting('event2title');
         $event2desc = theme_enlightlite_get_setting('event2description');
         $event2location = theme_enlightlite_get_setting('event2location');
@@ -271,7 +267,9 @@ echo $OUTPUT->doctype() ?>
         $event2endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event2endtime)->format("H");
         $event2endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event2endtime)->format("i");
         $event2image = theme_enlightlite_render_slideimg('eventimage2', 'eventimage2');
-
+        if (empty($event2image)) {
+            $event2image = $OUTPUT->image_url('/event/default', 'theme');
+        }
         $event3title = theme_enlightlite_get_setting('event3title');
         $event3desc = theme_enlightlite_get_setting('event3description');
         $event3location = theme_enlightlite_get_setting('event3location');
@@ -287,8 +285,12 @@ echo $OUTPUT->doctype() ?>
         $event3endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event3endtime)->format("H");
         $event3endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event3endtime)->format("i");
         $event3image = theme_enlightlite_render_slideimg('eventimage3', 'eventimage3');
-
+        //var_dump(empty($event3image));
+        if (empty($event3image)) {
+            $event3image = $OUTPUT->image_url('/event/default', 'theme');
+        }
         ?>
+            <?php echo theme_enlightlite_info(); ?>
             <input type="hidden" id="event1status" value="<?php echo $event1status ?>" />
             <input type="hidden" id="event2status" value="<?php echo $event2status ?>" />
             <input type="hidden" id="event3status" value="<?php echo $event3status ?>" />

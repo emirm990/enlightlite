@@ -1,5 +1,6 @@
 $orange: #ff9900;
 $grey: #ecf2ff;
+$blue: #1177d1;
 body {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -20,6 +21,9 @@ body {
 	margin-top: 15px !important;
 	background-color: $orange;
 	transition: background-color 0.2s ease-in-out;
+	width: auto !important;
+	max-width: unset !important;
+	padding: 0 20px;
 	&:hover,
 	&:focus {
 		text-decoration: none;
@@ -67,7 +71,7 @@ body {
 }
 .promo-blocks {
 	margin-top: 20px;
-	width: 60%;
+	width: 70%;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -75,8 +79,13 @@ body {
 		display: flex;
 		flex-basis: 50%;
 		align-items: center;
+		.promo-block-content {
+			padding: 10px;
+		}
 		img {
-			width: 90px;
+			width: 60px;
+			max-width: 60px;
+			object-fit: cover;
 			height: 100%;
 			margin-right: 10px;
 		}
@@ -84,6 +93,33 @@ body {
 }
 .info-block {
 	width: 70%;
+}
+.infoblock-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 130px;
+	margin-top: 150px;
+	.infoblock {
+		margin-bottom: 20px;
+		text-align: center;
+		h3 {
+			color: $blue;
+		}
+		h3::after {
+			content: "+";
+			position: relative;
+			bottom: 10px;
+			left: 5px;
+			font-size: 25px;
+			color: $blue;
+		}
+		img,
+		object {
+			height: 70px;
+			max-width: 100%;
+		}
+	}
 }
 .events {
 	margin-top: 50px;
@@ -212,8 +248,8 @@ body {
 	}
 }
 .btn-primary {
-	background-color: #1177d1;
-	border-color: #1177d1;
+	background-color: $blue;
+	border-color: $blue;
 	transition: all 0.2s ease-in-out;
 	&:hover {
 		background-color: rgba(17, 119, 209, 0.8);
@@ -231,6 +267,7 @@ body {
 		margin: 0 15px;
 		border-radius: 6px;
 		background-color: $grey;
+		font-size: 18px;
 		cursor: pointer;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
 		&:hover {
@@ -239,8 +276,8 @@ body {
 	}
 }
 span[data-fieldtype="submit"] .btn-primary {
-	background-color: #1177d1 !important;
-	border-color: #1177d1 !important;
+	background-color: $blue !important;
+	border-color: $blue !important;
 	transition: all 0.2s ease-in-out;
 	color: white;
 	&:hover {
@@ -399,9 +436,65 @@ footer {
 	}
 }
 #site-header .header-main .course-link .custom-dropdown-menu {
-	top: 110px;
+	top: 160px;
 	right: auto;
 }
 #site-header .header-main a.nav-link {
 	padding: 27px 20px;
+}
+#site-header .header-main {
+	margin-top: 0;
+}
+.fixed-top {
+	position: sticky;
+}
+.navbar-light .navbar-nav .nav-item .dropdown-toggle.nav-link,
+.navbar-light .navbar-nav .nav-item .nav-link {
+	color: #333;
+}
+.navbar-light .navbar-nav .nav-item .dropdown-toggle.nav-link:hover,
+.navbar-light .navbar-nav .nav-item .nav-link:hover {
+	color: $blue;
+}
+#header {
+	background: #fff;
+}
+#header .navbar-nav button.btn > span,
+#header .navbar-nav #page-grade-grading-manage .actions button.action > span,
+#page-grade-grading-manage .actions #header .navbar-nav button.action > span,
+#header .navbar-nav #rubric-rubric.gradingform_rubric button.addcriterion > span,
+#rubric-rubric.gradingform_rubric #header .navbar-nav button.addcriterion > span {
+	background: #333;
+}
+#header .header-top .dropdown .dropdown-menu {
+	background: #fff;
+}
+#header .header-top .dropdown .dropdown-menu a i {
+	color: #333;
+}
+#header .header-top a {
+	color: #333;
+}
+.top-nav {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	display: flex;
+	justify-content: space-between;
+	.social-icons {
+		padding-top: 1rem;
+	}
+	div {
+		height: 50px;
+		padding-left: 15px;
+		padding-right: 15px;
+
+		p {
+			padding-top: 1rem;
+		}
+	}
+}
+[data-region="drawer"] {
+	z-index: 1050;
+}
+.margin-left-15 {
+	margin-left: 15px;
 }

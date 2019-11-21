@@ -30,7 +30,8 @@ defined('MOODLE_INTERNAL') || die();
  * Return the set of main center block values in array.
  * @return type|array
  */
-function main_block() {
+function main_block()
+{
     global $CFG, $PAGE, $OUTPUT, $SITE;
     user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
     require_once($CFG->libdir . '/behat/lib.php');
@@ -90,27 +91,27 @@ function main_block() {
     $totalenable = $footerb1 + $footerb2 + $footerb3 + $footerb4;
     $footermain = 1;
 
-    switch($totalenable) {
-        case 4 :
+    switch ($totalenable) {
+        case 4:
             $colclass = 'col-md-3';
-        break;
+            break;
 
         case 3:
             $colclass = 'col-md-4';
-        break;
+            break;
 
         case 2:
             $colclass = 'col-md-6';
-        break;
+            break;
 
         case 1:
             $colclass = 'col-md-12';
-        break;
+            break;
 
         case 0:
             $footermain = 0;
             $colclass = '';
-        break;
+            break;
 
         default:
             $colclass = 'col-md-3';
@@ -118,7 +119,6 @@ function main_block() {
     $footerb4iconclass = theme_enlightlite_footer_address('true');
     $footericonclass = ($footerb4iconclass == "true") ? "footer-small-socials" : "";
     $footeraddress = theme_enlightlite_footer_address();
-
     $templatecontext = [
         'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
         'output' => $OUTPUT,

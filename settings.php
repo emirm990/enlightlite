@@ -93,6 +93,77 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
     $temp->add($setting);
 
+    $name = 'theme_enlightlite/theme_enlightlite_navtop';
+    $heading = "NAVIGATION TOP BAR";
+    $information = "";
+    $setting = new admin_setting_heading($name, $heading, $information);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/navtopenable';
+    $title = 'Enable content above navigation?';
+    $description = 'Enable content above navigation?';
+    $yes = 'yes';
+    $no = 'no';
+    $default = 0;
+    $choices = array(1 => $yes, 0 => $no);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/navtoptext';
+    $title = 'Navigation top text';
+    $description = 'Greeting text above navigation';
+    $default = 'Hello';
+    $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/navtoplink';
+    $title = 'Enable top link?';
+    $description = 'Enable link above navigation?';
+    $yes = 'yes';
+    $no = 'no';
+    $default = 0;
+    $choices = array(1 => $yes, 0 => $no);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/navtoplinktype';
+    $title = 'Link type, mail or phone? ';
+    $description = 'Link type for link after greeting text, mail or phone?';
+    $phone = 'tel:';
+    $mail = 'mailto:';
+    $default = 0;
+    $choices = array(0 => $mail, 1 => $phone);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/navtoplinkcontent';
+    $title = 'Navigation top link content';
+    $description = 'Navigation top link content';
+    $default = 'mail@mail.com';
+    $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/theme_enlightlite_navtopsocialicons';
+    $heading = 'Navigation bar top social icons';
+    $information = "";
+    $setting = new admin_setting_heading($name, $heading, $information);
+    $temp->add($setting);
+
+    for ($i = 1; $i <= 10; $i++) {
+        $name = 'theme_enlightlite/navtopsocialicon' . $i . 'url';
+        $title = 'Navigation top social icon ' . $i . ' url';
+        $description = 'Navigation top social icon ' . $i . ' url';
+        $default = 'https://facebook.com/yourpageid';
+        $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/navtopsocialicon' . $i . 'icon';
+        $title = 'Navigation top social icon ' . $i . ' icon';
+        $description = 'Navigation top social icon ' . $i . ' icon';
+        $default = 'fa fa-facebook';
+        $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+    }
     // This is the descriptor for Slide One.
     $name = 'theme_enlightlite/theme_enlightlite_miscellaneous';
     $heading = get_string('miscellaneous', 'theme_enlightlite');
@@ -321,162 +392,85 @@ if ($ADMIN->fulltree) {
 
     $settings->add($temp);
     /* Slideshow Settings End*/
+
     /* Front Page Settings */
     $temp = new admin_settingpage('theme_enlightlite_marketingspot', get_string('frontpageheading', 'theme_enlightlite'));
+
     /* Marketing Spot 1*/
+
     $name = 'theme_enlightlite_mspot1heading';
-    $heading = get_string('marketingspot', 'theme_enlightlite') . ' 1 (' . get_string('aboutustxt', 'theme_enlightlite') . ')';
+    $heading = "Marketing spot 1";
     $information = '';
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
-    // Marketing Spot 1 Title.
 
-    // Marketing Spot 1 Enable or disable.
     $name = 'theme_enlightlite/marketingSpot1_status';
-    $title = get_string('marketingSpot1_status', 'theme_enlightlite');
-    $description = get_string('marketingSpot1_statusdesc', 'theme_enlightlite');
+    $title = "Enable or disable marketing spot 1";
+    $description = "Enable or disable marketing spot 1";
     $default = 1;
     $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $temp->add($setting);
-    // Marketing Spot 1 Enable or disable.
 
     // Marketing Spot 1 Title.
     $name = 'theme_enlightlite/mspot1title';
-    $title = get_string('title', 'theme_enlightlite');
-    $description = get_string('mspottitledesc', 'theme_enlightlite', array('msno' => '1'));
-    $default = 'lang:aboutus';
+    $title = 'Marketing spot 1 title';
+    $description = 'Marketing spot 1 title';
+    $default = 'lang:learnanytime';
     $setting = new admin_setting_configtext($name, $title, $description, $default);
     $temp->add($setting);
 
     // Marketing Spot 1 Description.
     $name = 'theme_enlightlite/mspot1desc';
-    $title = get_string('description');
-    $description = get_string('mspotdescdesc', 'theme_enlightlite', array('msno' => '1'));
-    $default = 'lang:aboutusdesc';
-    $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
-    $temp->add($setting);
-
-    // Marketing spot 1 Media content.
-    $name = 'theme_enlightlite/mspot1media';
-    $title = get_string('media', 'theme_enlightlite');
-    $description = get_string('mspotmediadesc', 'theme_enlightlite', array('msno' => '1'));
-    $default = '<iframe src="https://www.youtube.com/embed/zKD91RTMwK0"
-    allowfullscreen="" width="560" height="315" frameborder="0"></iframe>';
-    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
-    $temp->add($setting);
-
-    $name = 'theme_enlightlite_mspot1additional';
-    $heading = "Additional marketing spot 1 blocks settings";
-    $information = '';
-    $setting = new admin_setting_heading($name, $heading, $information);
-    $temp->add($setting);
-
-    for ($i = 1; $i <= 4; $i++) {
-        // Marketing Spot 1 Right Title
-        $name = 'theme_enlightlite/mspot1titler' . $i;
-        $title = 'Additional marketing spot right title ' . $i;
-        $description = "Marketing spot right title " . $i;
-        $default = 'lang:learnanytime';
-        $setting = new admin_setting_configtext($name, $title, $description, $default);
-        $temp->add($setting);
-
-        // Marketing Spot 1 Right Image
-
-        $name = 'theme_enlightlite/mspot1rightimage' . $i;
-        $title = 'Additional marketing spot right image ' . $i;
-        $description = 'Additional marketing spot right image ' . $i;
-        $setting = new admin_setting_configstoredfile($name, $title, $description, 'mspot1rightimage' . $i);
-        $setting->set_updatedcallback('theme_reset_all_caches');
-        $temp->add($setting);
-
-        //Marketing Spot 1 Right Desc
-        $name = 'theme_enlightlite/mspot1descr' . $i;
-        $title = 'Additional marketing spot right text content ' . $i;
-        $description = 'Additional marketing spot right text content ' . $i;
-        $default = 'lang:learnanytimedesc';
-        $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
-        $temp->add($setting);
-    }
-    /* Marketing Spot 1*/
-
-    /* Marketing Spot 2*/
-    $name = 'theme_enlightlite/marketingSpot2_status';
-    $title = get_string('marketingSpot2_status', 'theme_enlightlite');
-    $description = get_string('marketingSpot2_statusdesc', 'theme_enlightlite');
-    $default = 1;
-    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
-    $temp->add($setting);
-
-    $name = 'theme_enlightlite_mspot2heading';
-    $heading = get_string('marketingspot', 'theme_enlightlite') . ' 2 ( ' . get_string('learntitle', 'theme_enlightlite') . " )";
-    $information = '';
-    $setting = new admin_setting_heading($name, $heading, $information);
-    $temp->add($setting);
-
-
-
-
-
-    // Marketing Spot 2 Title.
-    $name = 'theme_enlightlite/mspot2title';
-    $title = get_string('title', 'theme_enlightlite');
-    $description = get_string('mspottitledesc', 'theme_enlightlite', array('msno' => '2'));
-    $default = 'lang:learnanytime';
-    $setting = new admin_setting_configtext($name, $title, $description, $default);
-    $temp->add($setting);
-
-    // Marketing Spot 2 Description.
-    $name = 'theme_enlightlite/mspot2desc';
-    $title = get_string('description');
-    $description = get_string('mspotdescdesc', 'theme_enlightlite', array('msno' => '2'));
+    $title = 'Marketing spot 1 content';
+    $description = 'Marketing spot 1 content';
     $default = 'lang:learnanytimedesc';
     $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
     $temp->add($setting);
 
-    // Marketing Spot 2 Link Text.
-    $name = 'theme_enlightlite/mspot2urltext';
-    $title = get_string('button', 'theme_enlightlite') . ' ' . get_string('text', 'theme_enlightlite');
-    $description = get_string('mspot2urltxtdesc', 'theme_enlightlite', array('msno' => '2'));
+    // Marketing Spot 1 Link Text.
+    $name = 'theme_enlightlite/mspot1urltext';
+    $title = 'Marketing spot 1 link text';
+    $description = 'Marketing spot 1 link text';
     $default = 'lang:viewallcourses';
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
     $temp->add($setting);
 
-    // Marketing Spot 2 Link.
-    $name = 'theme_enlightlite/mspot2url';
-    $title = get_string('button', 'theme_enlightlite') . ' ' . get_string('link', 'theme_enlightlite');
-    $description = get_string('mspot2urldesc', 'theme_enlightlite');
+    // Marketing Spot 1 Link.
+    $name = 'theme_enlightlite/mspot1url';
+    $title = 'Marketing spot 1 link url';
+    $description = 'Marketing spot 1 link url';
     $default = 'http://www.example.com/';
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_URL);
     $temp->add($setting);
 
-    $name = 'theme_enlightlite/mspot2urltarget';
+    $name = 'theme_enlightlite/mspot1urltarget';
     $title = get_string('button', 'theme_enlightlite') . ' ' . get_string('target', 'theme_enlightlite');
-    $description = get_string('mspot2urltarget_desc', 'theme_enlightlite');
+    $description = "Open link in the same tab or new tab";
     $same = get_string('sameWindow', 'theme_enlightlite');
     $new = get_string('newWindow', 'theme_enlightlite');
     $default = 1;
     $choices = array(0 => $same, 1 => $new);
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $temp->add($setting);
-    /* Marketing Spot 2*/
-    $settings->add($temp);
 
-    $name = 'theme_enlightlite_mspot2additional';
-    $heading = 'Marketing spot 2 additional settings';
+    /* Marketing Spot 1*/
+
+    $name = 'theme_enlightlite_mspot1additional';
+    $heading = 'Marketing spot 1 additional settings';
     $information = '';
     $setting = new admin_setting_heading($name, $heading, $information);
     $temp->add($setting);
 
     for ($i = 1; $i <= 4; $i++) {
-        // Marketing Spot 2 Right Title 1
-        $name = 'theme_enlightlite/mspot2titler' . $i;
+        // Marketing Spot 1 Right Title 1
+        $name = 'theme_enlightlite/mspot1titler' . $i;
         $title = 'Marketing spot ' . $i . ' title';
         $description = 'Marketing spot ' . $i . ' title';
         $default = 'lang:learnanytime';
         $setting = new admin_setting_configtext($name, $title, $description, $default);
         $temp->add($setting);
 
-        // Marketing Spot 2 Right Image 1
+        // Marketing Spot 1 Right Image 1
         $name = 'theme_enlightlite/rightimage' . $i;
         $title = 'Marketing spot ' . $i . ' image';
         $description = 'Marketing spot ' . $i . ' image';
@@ -484,16 +478,148 @@ if ($ADMIN->fulltree) {
         $setting->set_updatedcallback('theme_reset_all_caches');
         $temp->add($setting);
 
-        //Marketing Spot 2 Right Desc 1
-        $name = 'theme_enlightlite/mspot2descr' . $i;
+        //Marketing Spot 1 Right Desc 1
+        $name = 'theme_enlightlite/mspot1descr' . $i;
         $title = 'Marketing spot ' . $i . ' text content';
         $description = 'Marketing spot ' . $i . ' text content';
         $default = 'lang:learnanytimedesc';
         $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
         $temp->add($setting);
     }
-    /* Front Page Settings End */
+    /* Marketing Spot 2*/
+    $name = 'theme_enlightlite_mspot2heading';
+    $heading = 'Marketing spot 2';
+    $information = '';
+    $setting = new admin_setting_heading($name, $heading, $information);
+    $temp->add($setting);
+
+
+    // Marketing Spot 2 Enable or disable.
+    $name = 'theme_enlightlite/marketingSpot2_status';
+    $title = 'Enable or disable mareting spot 2';
+    $description = 'Enable or disable mareting spot 2';
+    $default = 1;
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $temp->add($setting);
+
+    // Marketing Spot 2 Title.
+    $name = 'theme_enlightlite/mspot2title';
+    $title = 'Marketing spot 2 title';
+    $description = 'Marketing spot 2 title';
+    $default = 'lang:aboutus';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $temp->add($setting);
+
+    // Marketing Spot 2 Description.
+    $name = 'theme_enlightlite/mspot2desc';
+    $title = 'Marketing spot 2 content';
+    $description = 'Marketing spot 2 content';
+    $default = 'lang:aboutusdesc';
+    $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
+    $temp->add($setting);
+
+    // Marketing spot 1 Media content.
+    $name = 'theme_enlightlite/mspot2media';
+    $title = get_string('media', 'theme_enlightlite');
+    $description = get_string('mspotmediadesc', 'theme_enlightlite', array('msno' => '2'));
+    $default = '<iframe src="https://www.youtube.com/embed/zKD91RTMwK0"
+    allowfullscreen="" width="560" height="315" frameborder="0"></iframe>';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite_mspot2additional';
+    $heading = "Additional marketing spot 2 blocks settings";
+    $information = '';
+    $setting = new admin_setting_heading($name, $heading, $information);
+    $temp->add($setting);
+
+    for ($i = 1; $i <= 4; $i++) {
+        // Marketing Spot 2 Right Title
+        $name = 'theme_enlightlite/mspot2titler' . $i;
+        $title = 'Marketing spot 2 right title ' . $i;
+        $description = 'Marketing spot 2 right title ' . $i;
+        $default = 'lang:learnanytime';
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $temp->add($setting);
+
+        // Marketing Spot 2 Right Image
+
+        $name = 'theme_enlightlite/mspot2rightimage' . $i;
+        $title = 'Marketing spot 2 right image ' . $i;
+        $description = 'Marketing spot 2 right image ' . $i;
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'mspot2rightimage' . $i);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        //Marketing Spot 1 Right Desc
+        $name = 'theme_enlightlite/mspot2descr' . $i;
+        $title = 'Marketing spot 2 right text content ' . $i;
+        $description = 'Marketing spot 2 right text content ' . $i;
+        $default = 'lang:learnanytimedesc';
+        $setting = new admin_setting_configtextarea($name, $title, $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+    }
+
+    $settings->add($temp);
+    /* Marketing Spot 2*/
+
+
+
+    /* Info settings page */
+
+    $temp = new admin_settingpage('theme_enlightlite_info', "Info");
+
+    $name = 'theme_enlightlite_info_enable';
+    $heading = "Enable Info block?"; //get_string('events', 'theme_enlightlite');
+    $information = '';
+    $setting = new admin_setting_heading($name, $heading, $information);
+    $temp->add($setting);
+
+    $name = 'theme_enlightlite/infoenabled';
+    $title = "Show Info About Company?";
+    $description = "Chose no if you don't want this on the frontpage";
+    $yes = get_string('yes');
+    $no = get_string('no');
+    $default = 0;
+    $choices = array(1 => $yes, 0 => $no);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $temp->add($setting);
+
+    for ($i = 1; $i <= 8; $i++) {
+        $name = 'theme_enlightlite_infobox' . $i;
+        $heading = "Info box " . $i;
+        $information = '';
+        $setting = new admin_setting_heading($name, $heading, $information);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/infoicon' . $i;
+        $title = 'Info ' . $i . ' icon';
+        $description = 'Info ' . $i . ' icon';
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'infoicon' . $i);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/infotitle' . $i;
+        $title = 'Info title ' . $i;
+        $default = '';
+        $description = "Enter your info Title. Leave empty if you don't want this to be shown.";
+        $setting = new admin_setting_configtext($name, $title,  $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+
+        $name = 'theme_enlightlite/infodescription' . $i;
+        $title = 'Info description ' . $i;
+        $default = '';
+        $description = "Enter your info description.";
+        $setting = new admin_setting_configtext($name, $title,  $description, $default, PARAM_TEXT);
+        $temp->add($setting);
+    }
+
+    $settings->add($temp);
+
+    /* Info settings page end*/
+
     /* Events Settings Page */
+
     $temp = new admin_settingpage('theme_enlightlite_events', "Events");
 
     $name = 'theme_enlightlite_events_enable';
@@ -725,138 +851,6 @@ if ($ADMIN->fulltree) {
             '30' => '30',
             '31' => '31'
         );
-        $choices2 = array(
-            '01' => '01',
-            '02' => '02',
-            '03' => '03',
-            '04' => '04',
-            '05' => '05',
-            '06' => '06',
-            '07' => '07',
-            '08' => '08',
-            '09' => '09',
-            '10' => '10',
-            '11' => '11',
-            '12' => '12',
-            '13' => '13',
-            '14' => '14',
-            '15' => '15',
-            '16' => '16',
-            '17' => '17',
-            '18' => '18',
-            '19' => '19',
-            '20' => '20',
-            '21' => '21',
-            '22' => '22',
-            '23' => '23',
-            '24' => '24',
-            '25' => '25',
-            '26' => '26',
-            '27' => '27',
-            '28' => '28',
-            '29' => '29',
-            '30' => '30'
-        );
-        $choices3 = array(
-            '01' => '01',
-            '02' => '02',
-            '03' => '03',
-            '04' => '04',
-            '05' => '05',
-            '06' => '06',
-            '07' => '07',
-            '08' => '08',
-            '09' => '09',
-            '10' => '10',
-            '11' => '11',
-            '12' => '12',
-            '13' => '13',
-            '14' => '14',
-            '15' => '15',
-            '16' => '16',
-            '17' => '17',
-            '18' => '18',
-            '19' => '19',
-            '20' => '20',
-            '21' => '21',
-            '22' => '22',
-            '23' => '23',
-            '24' => '24',
-            '25' => '25',
-            '26' => '26',
-            '27' => '27',
-            '28' => '28',
-            '29' => '29'
-        );
-        $choices4 = array(
-            '01' => '01',
-            '02' => '02',
-            '03' => '03',
-            '04' => '04',
-            '05' => '05',
-            '06' => '06',
-            '07' => '07',
-            '08' => '08',
-            '09' => '09',
-            '10' => '10',
-            '11' => '11',
-            '12' => '12',
-            '13' => '13',
-            '14' => '14',
-            '15' => '15',
-            '16' => '16',
-            '17' => '17',
-            '18' => '18',
-            '19' => '19',
-            '20' => '20',
-            '21' => '21',
-            '22' => '22',
-            '23' => '23',
-            '24' => '24',
-            '25' => '25',
-            '26' => '26',
-            '27' => '27',
-            '28' => '28'
-        );
-        $currentMonth = theme_enlightlite_get_setting('event' . $i . 'month');
-        $currentYear = date("Y");
-        $leapYear = false;
-        if ((0 == $currentYear % 4) & (0 != $currentYear % 100) | (0 == $currentYear % 400)) {
-            $leapYear = true;
-        } else {
-            $leapYear = false;
-        }
-        $numberOfDays = '31';
-        if (
-            $currentMonth == '01' || $currentMonth == '03' || $currentMonth == '05' ||
-            $currentMonth == '07' ||
-            $currentMonth == '08' ||
-            $currentMonth == '10' ||
-            $currentMonth == '12'
-        ) {
-            $numberOfDays = "31";
-        } else {
-            if ($leapYear && $currentMonth == '02') {
-                $numberOfDays = "29";
-            } elseif (!$leapYear && $currentMonth == '02') {
-                $numberOfDays =  "28";
-            } else {
-                $numberOfDays = "30";
-            }
-        }
-        $monthLength = $numberOfDays;
-
-        if ($monthLength == '31') {
-            $choices = $choices;
-        } elseif ($monthLength == '30') {
-            $choices = $choices2;
-        } else {
-            if ($leapYear) {
-                $choices = $choices3;
-            } else {
-                $choices = $choices4;
-            }
-        }
         $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
         $temp->add($setting);
 

@@ -33,7 +33,7 @@ defined('MOODLE_INTERNAL') || die();
 
 function theme_enlightlite_get_courses()
 {
-    $sql = "SELECT * FROM mdl_course WHERE id <> 1 ORDER BY timecreated DESC LIMIT 4";
+    $sql = "SELECT * FROM {course} WHERE id <> 1 ORDER BY timecreated DESC LIMIT 4";
     global $DB;
     $course = $DB->get_records_sql($sql);
     return $course;
@@ -607,17 +607,17 @@ function theme_enlightlite_marketingspot1()
 {
     global $CFG, $PAGE;
 
-    $status = theme_enlightlite_get_setting('marketingSpot1_status');
-    $description = theme_enlightlite_get_setting('mspot1desc');
-    $title = theme_enlightlite_lang(theme_enlightlite_get_setting('mspot1title'));
-    $media = theme_enlightlite_get_setting('mspot1media', 'format_html');
+    $status = theme_enlightlite_get_setting('marketingSpot2_status');
+    $description = theme_enlightlite_get_setting('mspot2desc');
+    $title = theme_enlightlite_lang(theme_enlightlite_get_setting('mspot2title'));
+    $media = theme_enlightlite_get_setting('mspot2media', 'format_html');
     $titles = [];
     $images = [];
     $texts = [];
     for ($i = 1; $i <= 4; $i++) {
-        array_push($titles, theme_enlightlite_get_setting('mspot1titler' . $i, 'format_html'));
-        array_push($images, theme_enlightlite_render_slideimg('mspot1rightimage' . $i, 'mspot1rightimage' . $i));
-        array_push($texts, theme_enlightlite_get_setting('mspot1descr' . $i, 'format_html'));
+        array_push($titles, theme_enlightlite_get_setting('mspot2titler' . $i, 'format_html'));
+        array_push($images, theme_enlightlite_render_slideimg('mspot2rightimage' . $i, 'mspot2rightimage' . $i));
+        array_push($texts, theme_enlightlite_get_setting('mspot2descr' . $i, 'format_html'));
     }
 
     /*$title1 = theme_enlightlite_get_setting('mspot1titler1', 'format_html');
@@ -701,7 +701,47 @@ function theme_enlightlite_marketingspot1()
     }
     return $content;
 }
+function theme_enlightlite_info()
+{
+    global $CFG, $PAGE;
 
+    $status = theme_enlightlite_get_setting('infoenabled');
+    $titles = [];
+    $images = [];
+    $descriptions = [];
+    $content = "";
+    for ($i = 1; $i <= 8; $i++) {
+        array_push($titles, theme_enlightlite_get_setting('infotitle' . $i, 'format_html'));
+        array_push($images, theme_enlightlite_render_slideimg('infoicon' . $i, 'infoicon' . $i));
+        array_push($descriptions, theme_enlightlite_get_setting('infodescription' . $i, 'format_html'));
+    }
+    if ($status == 1) {
+        $content .= html_writer::start_tag('div', array('class' => 'infoblock-container container'));
+        for ($i = 0; $i <= 7; $i++) {
+            if (!empty($titles[$i])) {
+                $content .= html_writer::start_tag('div', array('class' => 'infoblock'));
+                if (substr($images[$i], -3) == 'svg') {
+                    $content .= html_writer::empty_tag('object', array(
+                        'type' => 'image/svg+xml',
+                        'data' => $images[$i]
+                    ));
+                    $content .= html_writer::end_tag('object');
+                } else {
+                    $content .= html_writer::empty_tag('img', array(
+                        'src' => $images[$i],
+                        'alt' => 'Info block image ' . $i
+                    ));
+                    $content .= html_writer::end_tag('img');
+                }
+                $content .= html_writer::tag('h3', $titles[$i]);
+                $content .= html_writer::tag('p', $descriptions[$i]);
+                $content .= html_writer::end_tag('div');
+            }
+        }
+        $content .= html_writer::end_tag('div');
+        return $content;
+    }
+}
 /**
  * Function returns the category list random order for header menu.
  * @return type|string
@@ -926,6 +966,7 @@ function theme_enlightlite_footer_address($check = "")
     return $value;
 }
 
+
 function theme_enlightlite_get_recent_blogs()
 {
     $admins = get_admins();
@@ -934,7 +975,7 @@ function theme_enlightlite_get_recent_blogs()
         array_push($adminsID, $admin->id);
     };
 
-    $sql = "SELECT p.id AS post_id,u.id AS user_id,summary,subject,created, firstname, lastname FROM mdl_post AS p LEFT JOIN mdl_user AS u ON p.userid = u.id WHERE p.module = 'blog' ORDER BY p.created DESC LIMIT 3";
+    $sql = "SELECT p.id AS post_id,u.id AS user_id,summary,subject,created, firstname, lastname FROM {post} AS p LEFT JOIN {user} AS u ON p.userid = u.id WHERE p.module = 'blog' ORDER BY p.created DESC LIMIT 3";
     global $DB;
     $blogs = $DB->get_records_sql($sql);
     $blogslist = [];

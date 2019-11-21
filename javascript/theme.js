@@ -87,7 +87,7 @@ $(function () {
     });
 
     /*----- Create the accordion for the custom blocks or tabs in settings page */
-    var toggelSection = ['#theme_enlightlite_general', '#theme_enlightlite_slideshow', '#theme_enlightlite_marketingspot', '#theme_enlightlite_footer', '#theme_enlightlite_events', '#theme_enlightlite_tabs', '#theme_enlightlite_blogimages'];
+    var toggelSection = ['#theme_enlightlite_general', '#theme_enlightlite_slideshow', '#theme_enlightlite_marketingspot', '#theme_enlightlite_footer', '#theme_enlightlite_events', '#theme_enlightlite_tabs', '#theme_enlightlite_blogimages', '#theme_enlightlite_info'];
     $.each(toggelSection, function (key, value) {
         h3 = $(value).find('h3.main');
         block = value.split("_")[2]; // Get the settings heading name from the given id's.

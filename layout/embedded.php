@@ -25,6 +25,7 @@ defined('MOODLE_INTERNAL') || die();
 
 echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
+
 <head>
     <title><?php echo $OUTPUT->page_title(); ?></title>
     <link rel="shortcut icon" href="<?php echo $OUTPUT->favicon(); ?>" />
@@ -33,12 +34,13 @@ echo $OUTPUT->doctype() ?>
 </head>
 
 <body <?php echo $OUTPUT->body_attributes(); ?>>
-<?php echo $OUTPUT->standard_top_of_body_html() ?>
-<div id="page">
-    <div id="page-content" class="clearfix">
-        <?php echo $OUTPUT->main_content(); ?>
+    <?php echo $OUTPUT->standard_top_of_body_html() ?>
+    <div id="page">
+        <div id="page-content" class="clearfix">
+            <?php echo $OUTPUT->main_content(); ?>
+        </div>
     </div>
-</div>
-<?php echo $OUTPUT->standard_end_of_body_html() ?>
+    <?php echo $OUTPUT->standard_end_of_body_html() ?>
 </body>
+
 </html>

@@ -23,13 +23,16 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die();
+use function PHPSTORM_META\type;
+
+defined('MOODLE_INTERNAL') || die();
 
 /**
  * Return the set of values for Header Contents.
  * @return type|string
  */
-function header_contents() {
+function header_contents()
+{
 
     global $CFG, $PAGE, $OUTPUT, $SITE;
     user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
@@ -57,6 +60,31 @@ function header_contents() {
     $courserenderer = $PAGE->get_renderer('core', 'course');
     $tcmenu = $courserenderer->top_course_menu();
     $cmenuhide = theme_enlightlite_get_setting('cmenuhide');
+    $topnav = theme_enlightlite_get_setting('navtopenable');
+    $navtoptext = theme_enlightlite_get_setting('navtoptext');
+    $navtoplink = theme_enlightlite_get_setting('navtoplink');
+    $navtoplinktype = theme_enlightlite_get_setting('navtoplinktype') == 0 ? 'mailto:' : 'tel:';
+    if ($navtoplinktype == 'mailto:') {
+        $navtoptexticon = 'fa fa-envelope';
+    } else {
+        $navtoptexticon = 'fa fa-phone';
+    };
+    $navtoplinkcontent = theme_enlightlite_get_setting('navtoplinkcontent');
+    $navtopsocialiconurl = [];
+    $navtopsocialiconicon = [];
+    for ($i = 1; $i <= 10; $i++) {
+        if (!empty(theme_enlightlite_get_setting('navtopsocialicon' . $i . 'url'))) {
+            array_push($navtopsocialiconurl, theme_enlightlite_get_setting('navtopsocialicon' . $i . 'url'));
+        }
+        if (!empty(theme_enlightlite_get_setting('navtopsocialicon' . $i . 'icon'))) {
+            array_push($navtopsocialiconicon, theme_enlightlite_get_setting('navtopsocialicon' . $i . 'icon'));
+        }
+    };
+    $links = [];
+    for ($i = 0; $i < count($navtopsocialiconicon); $i++) {
+        $links[] = '<a href="' . $navtopsocialiconurl[$i] . '"><i class="margin-left-15 ' . $navtopsocialiconicon[$i] . '"></i></a>';
+    };
+
     $curl = new moodle_url('/course/index.php');
     $logourl = theme_enlightlite_get_logo_url();
     $topmmenu = $tcmenu['topmmenu'];
@@ -82,8 +110,14 @@ function header_contents() {
         "s_courses" => $scourses,
         'output' => $OUTPUT,
         "primaryclass" => $class,
+        'navtoptext' => $navtoptext,
+        'navtoptexticon' => $navtoptexticon,
+        'topnav' => $topnav,
+        'navtoplinktype' => $navtoplinktype,
+        'navtoplinkcontent' => $navtoplinkcontent,
+        'navtoplink' => $navtoplink,
+        'links' => $links
     ];
-
     return $templatecontext;
 }
 $template = header_contents();
