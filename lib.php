@@ -701,9 +701,64 @@ function theme_enlightlite_marketingspot1()
     }
     return $content;
 }
+class Event
+{
+    public $title;
+    public $description;
+    public $location;
+    public $status;
+    public $starthour;
+    public $startminute;
+    public $duration;
+    public $day;
+    public $month;
+    public $year;
+    public $image;
+    public $key;
+
+    function setValues($title, $description, $location, $status, $starthour, $startminute, $duration, $day, $month, $year, $image, $key)
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->location = $location;
+        $this->status = $status;
+        $this->starthour = $starthour;
+        $this->startminute = $startminute;
+        $this->duration = $duration;
+        $this->day = $day;
+        $this->month = $month;
+        $this->year = $year;
+        $this->image = $image;
+        $this->key = $key;
+    }
+    function starttime()
+    {
+        return strtotime($this->day . $this->month . $this->year . $this->starthour . $this->startminute);
+    }
+    function notstarted()
+    {
+        if ($this->starttime() < strtotime("now")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function eventdate()
+    {
+        return date('d M Y', $this->starttime());
+    }
+    function eventstarttime()
+    {
+        return date('H:i', $this->starttime());
+    }
+    function eventendtime()
+    {
+        return date('H:i', $this->starttime() + $this->duration);
+    }
+}
 function theme_enlightlite_info()
 {
-    global $CFG, $PAGE;
+    global $CFG, $PAGE, $OUTPUT;
 
     $status = theme_enlightlite_get_setting('infoenabled');
     $titles = [];
@@ -728,7 +783,7 @@ function theme_enlightlite_info()
                     $content .= html_writer::end_tag('object');
                 } else {
                     $content .= html_writer::empty_tag('img', array(
-                        'src' => $images[$i],
+                        'src' => !empty($images[$i]) ? $images[$i] : $OUTPUT->image_url('/info' . '/' . rand(0, 99), 'theme'),
                         'alt' => 'Info block image ' . $i
                     ));
                     $content .= html_writer::end_tag('img');
