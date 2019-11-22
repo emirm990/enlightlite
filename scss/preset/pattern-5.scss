@@ -98,6 +98,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 130px;
 	margin-top: 150px;
 	.infoblock {
@@ -161,7 +162,7 @@ body {
 			background-repeat: no-repeat;
 			background-size: cover;
 			margin-bottom: 15px;
-			height: calc(50% - 15px);
+			height: calc(50% - 7.5px);
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-end;
