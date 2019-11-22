@@ -1,0 +1,62 @@
+{{!
+    // This file is part of Moodle - http://moodle.org/
+    //
+    // Moodle is free software: you can redistribute it and/or modify
+    // it under the terms of the GNU General Public License as published by
+    // the Free Software Foundation, either version 3 of the License, or
+    // (at your option) any later version.
+    //
+    // Moodle is distributed in the hope that it will be useful,
+    // but WITHOUT ANY WARRANTY; without even the implied warranty of
+    // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    // GNU General Public License for more details.
+    //
+    // You should have received a copy of the GNU General Public License
+    // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+    /**
+     * @package    theme_enlightlite
+     * @copyright  2015 onwards LMSACE Dev Team (http://www.lmsace.com)
+     * @authors    LMSACE Dev Team
+     * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+     */
+}}
+{{#allevents}}
+<div class="event-details container --closed" id="event-details{{key}}">
+    <div class="info">
+        <span class="close-details" id="close-details{{key}}">X</span>
+        <image src="{{image}}" alt="event background image" />
+        <div class="map">
+            <iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q={{location}}&z=14&output=embed"></iframe>
+        </div>
+    </div>
+    <div class="right">
+        <h2>{{title}}</h2>
+        <p>
+            <span class="date">{{eventdate}}</span>
+            <span class="time">{{eventstarttime}} - {{eventendtime}}</span>
+        </p>
+        <p class="description">{{description}}</p>
+    </div>
+</div>
+{{/allevents}}
+<div class="event-container container" >
+    {{#firstevent}}
+        {{#notstarted}}
+        <div id="event{{key}}" class="event-main" style="background-image:url({{image}})">
+        <p><span class="date">{{eventdate}}</span> <span class="time">{{eventstarttime}} - {{eventendtime}}</span>
+        <h3>{{title}}</h3>
+        </div>
+        {{/notstarted}}
+    {{/firstevent}}
+    <div class="event-secondary">
+    {{#restevents}}
+        {{#notstarted}}
+        <div id="event{{key}}" class="event-top" style="background-image:url({{image}})">
+        <p><span class="date">{{eventdate}}</span> <span class="time">{{eventstarttime}} - {{eventendtime}}</span>
+        <h3>{{title}}</h3>
+        </div>
+        {{/notstarted}}
+    {{/restevents}}
+    </div>
+</div>
