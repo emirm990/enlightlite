@@ -594,7 +594,7 @@ if ($ADMIN->fulltree) {
 
         $name = 'theme_enlightlite/infoicon' . $i;
         $title = 'Info ' . $i . ' icon';
-        $description = 'Info ' . $i . ' icon';
+        $description = 'Info ' . $i . ' icon, If nothing is selected you will get random image from "/pix/info" folder in the theme.';
         $setting = new admin_setting_configstoredfile($name, $title, $description, 'infoicon' . $i);
         $setting->set_updatedcallback('theme_reset_all_caches');
         $temp->add($setting);
@@ -639,7 +639,7 @@ if ($ADMIN->fulltree) {
     $temp->add($setting);
 
     /* events 1 - 3 */
-    for ($i = 1; $i < 4; $i++) {
+    for ($i = 1; $i < 7; $i++) {
         $name = 'theme_enlightlite_event' . $i;
         $heading = "Event " . $i; //get_string('events', 'theme_enlightlite');
         $information = '';
