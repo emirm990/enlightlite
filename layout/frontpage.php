@@ -234,164 +234,13 @@ echo $OUTPUT->doctype() ?>
                     break;
             }
         }
-        $event1title = theme_enlightlite_get_setting('event1title');
-        $event1desc = theme_enlightlite_get_setting('event1description');
-        $event1location = theme_enlightlite_get_setting('event1location');
-        $event1status = theme_enlightlite_get_setting('event1status');
-        $eventstart1hour = theme_enlightlite_get_setting('eventstart1hour');
-        $eventstart1minute = theme_enlightlite_get_setting('eventstart1minute');
-        $event1duration = theme_enlightlite_get_setting('event1duration');
-        $event1day = theme_enlightlite_get_setting('event1day');
-        $event1month = monthName(theme_enlightlite_get_setting('event1month'));
-        $event1year = theme_enlightlite_get_setting('event1year');
-        $event1starttime = strtotime($event1day . $event1month . $event1year . $eventstart1hour . $eventstart1minute);
-        $event1endtime = date('d/M/Y:H:i:s', $event1starttime + $event1duration);
-        $event1endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event1endtime)->format("H");
-        $event1endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event1endtime)->format("i");
-        $event1image = theme_enlightlite_render_slideimg('eventimage1', 'eventimage1');
-        if (empty($event1image)) {
-            $event1image = $OUTPUT->image_url('/event/default', 'theme');
-        }
-        $event2title = theme_enlightlite_get_setting('event2title');
-        $event2desc = theme_enlightlite_get_setting('event2description');
-        $event2location = theme_enlightlite_get_setting('event2location');
-        $event2status = theme_enlightlite_get_setting('event2status');
-        $eventstart2hour = theme_enlightlite_get_setting('eventstart2hour');
-        $eventstart2minute = theme_enlightlite_get_setting('eventstart2minute');
-        $event2duration = theme_enlightlite_get_setting('event2duration');
-        $event2day = theme_enlightlite_get_setting('event2day');
-        $event2month = monthName(theme_enlightlite_get_setting('event2month'));
-        $event2year = theme_enlightlite_get_setting('event2year');
-        $event2starttime = strtotime($event2day . $event2month . $event2year . $eventstart2hour . $eventstart2minute);
-        $event2endtime = date('d/M/Y:H:i:s', $event2starttime + $event2duration);
-        $event2endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event2endtime)->format("H");
-        $event2endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event2endtime)->format("i");
-        $event2image = theme_enlightlite_render_slideimg('eventimage2', 'eventimage2');
-        if (empty($event2image)) {
-            $event2image = $OUTPUT->image_url('/event/default', 'theme');
-        }
-        $event3title = theme_enlightlite_get_setting('event3title');
-        $event3desc = theme_enlightlite_get_setting('event3description');
-        $event3location = theme_enlightlite_get_setting('event3location');
-        $event3status = theme_enlightlite_get_setting('event3status');
-        $eventstart3hour = theme_enlightlite_get_setting('eventstart3hour');
-        $eventstart3minute = theme_enlightlite_get_setting('eventstart3minute');
-        $event3duration = theme_enlightlite_get_setting('event3duration');
-        $event3day = theme_enlightlite_get_setting('event3day');
-        $event3month = monthName(theme_enlightlite_get_setting('event3month'));
-        $event3year = theme_enlightlite_get_setting('event3year');
-        $event3starttime = strtotime($event3day . $event3month . $event3year . $eventstart3hour . $eventstart3minute);
-        $event3endtime = date('d/M/Y:H:i:s', $event3starttime + $event3duration);
-        $event3endhour = DateTime::createFromFormat("d/M/Y:H:i:s", $event3endtime)->format("H");
-        $event3endminute = DateTime::createFromFormat("d/M/Y:H:i:s", $event3endtime)->format("i");
-        $event3image = theme_enlightlite_render_slideimg('eventimage3', 'eventimage3');
-        //var_dump(empty($event3image));
-        if (empty($event3image)) {
-            $event3image = $OUTPUT->image_url('/event/default', 'theme');
-        }
+        echo theme_enlightlite_info();
+        require_once(dirname(__FILE__) . '/includes/events.php');
+
+
         ?>
-            <?php echo theme_enlightlite_info(); ?>
-            <input type="hidden" id="event1status" value="<?php echo $event1status ?>" />
-            <input type="hidden" id="event2status" value="<?php echo $event2status ?>" />
-            <input type="hidden" id="event3status" value="<?php echo $event3status ?>" />
-            <?php
-            $hasevents = ($event1status || $event2status || $event3status);
-            if ($eventsenabled == '1' && $hasevents) { ?>
-                <div class="event-details container --closed" id="event-details1">
-                    <div class="info">
-                        <span class="close-details" id="close-details1">X</span>
-                        <image src="<?php echo $event1image ?>" alt="event background image" />
-                        <div class="map">
-                            <?php
-                                echo '<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $event1location)) . '&z=14&output=embed"></iframe>';
-                                ?>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <h2><?php echo $event1title ?></h2>
-                        <p><span class="date"><?php echo $event1day, " ", $event1month, " ", $event1year ?></span> <span class="time"><?php echo $eventstart1hour, ':', $eventstart1minute, "-", $event1endhour, ":", $event1endminute ?></span></p>
-                        <p class="description">
-                            <?php echo $event1desc ?>
-                        </p>
-                    </div>
-                </div>
 
-                <div class="event-details container --closed" id="event-details2">
-                    <div class="info">
-                        <span class="close-details" id="close-details2">X</span>
-                        <image src="<?php echo $event2image ?>" alt="event background image" />
-                        <div class="map">
-                            <?php
-                                echo '<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $event2location)) . '&z=14&output=embed"></iframe>';
-                                ?>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <h2><?php echo $event2title ?></h2>
-                        <p><span class="date"><?php echo $event2day, " ", $event2month, " ", $event2year ?></span> <span class="time"><?php echo $eventstart2hour, ':', $eventstart2minute, "-", $event2endhour, ":", $event2endminute ?></span></p>
-                        <p class="description">
-                            <?php echo $event2desc ?>
-                        </p>
-                    </div>
-                </div>
 
-                <div class="event-details container --closed" id="event-details3">
-                    <div class="info">
-                        <span class="close-details" id="close-details3">X</span>
-                        <image src="<?php echo $event3image ?>" alt="event background image" />
-                        <div class="map">
-                            <?php
-                                echo '<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $event3location)) . '&z=14&output=embed"></iframe>';
-                                ?>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <h2><?php echo $event3title ?></h2>
-                        <p><span class="date"><?php echo $event3day, " ", $event3month, " ", $event3year ?></span> <span class="time"><?php echo $eventstart3hour, ':', $eventstart3minute, "-", $event3endhour, ":", $event3endminute ?></span></p>
-                        <p class="description">
-                            <?php echo $event3desc ?>
-                        </p>
-                    </div>
-                </div>
-                <div class="events">
-                    <h2>Our Upcoming Events</h2>
-                </div>
-                <div class="event-container container">
-                    <?php
-                        if ($event1status == '1') {
-                            ?>
-                        <div id="event1" class="event-main" style="background-image:url(<?php echo $event1image ?>)">
-                            <p><span class="date"><?php echo $event1day, " ", $event1month, " ", $event1year ?></span> <span class="time"><?php echo $eventstart1hour, ':', $eventstart1minute, "-", $event1endhour, ":", $event1endminute ?></span></p>
-                            <h3><?php echo $event1title ?></h3>
-                        </div>
-                    <?php
-                        }
-                        ?>
-                    <?php if ($event2status == '1' || $event3status == '1') {
-                            ?>
-                        <div class="event-secondary">
-                            <?php
-                                    if ($event2status == "1") {
-                                        ?>
-                                <div class="event-top" id="event2" style="background-image:url(<?php echo $event2image ?>)">
-                                    <p><span class="date"><?php echo $event2day, " ", $event2month, " ", $event2year ?></span> <span class="time"><?php echo $eventstart2hour, ':', $eventstart2minute, "-",  $event2endhour, ":", $event2endminute ?></span></p>
-                                    <h3><?php echo $event2title ?></h3>
-                                </div>
-                            <?php } ?>
-                            <?php
-                                    if ($event3status == '1') {
-                                        ?>
-                                <div class="event-bot" id="event3" style="background-image:url(<?php echo $event3image ?>)">
-                                    <p><span class="date"><?php echo $event3day, " ", $event3month, " ", $event3year ?></span> <span class="time"><?php echo $eventstart3hour, ':', $eventstart3minute, "-",  $event3endhour, ":", $event3endminute ?></span></p>
-                                    <h3><?php echo $event3title ?></h3>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    <?php } ?>
-                </div>
-            <?php
-            }
-            ?>
             <!--E.O.Marketing Spot 1 -->
             <div id="page" class="enlightlite-frontpage" style="">
                 <header id="page-header" class="clearfix">
@@ -529,7 +378,10 @@ echo $OUTPUT->doctype() ?>
                 }
                 e.target.classList.add("active-tab");
             })
-        } /*events content*/
+        }
+
+        // TODO rework event modal and events event listeners
+        /*events content*/
         let event1status = document.querySelector("#event1status").value;
         let event2status = document.querySelector("#event2status").value;
         let event3status = document.querySelector("#event3status").value;
